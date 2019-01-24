@@ -1,0 +1,15 @@
+h1 {
+    color: red; 
+    font-size:20px; 
+    margin: 0;
+}
+h1 {
+    color: blue;
+}
+h1.italic-title {
+    font-style: italic;
+}
+rect {
+    fill: red;
+    stroke: green;
+}
