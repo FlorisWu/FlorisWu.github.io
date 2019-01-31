@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <title>Homework_jan31</title>
+    </head>
+
+    <body>
+        <h1 id="title">Here's my JavaScript</h1>
+        <h2 id="title2">Here's my homework for jan31.</h1>
+        <script>
+            var greaterThanTen = function(num) {
+                if (num>10) {
+                    document.getElementById("title2").innerHTML = "New text! And it's red!";
+                    document.getElementById("title2").style.color = "red";
+                }
+                else {
+                    document.getElementById("title2").innerHTML = "New text! And it's green!";
+                    document.getElementById("title2").style.color = "green";
+                }
+                return num>10;
+            }
+            var checkNumber = greaterThanTen(5);
+            console.log(checkNumber);</script>
+    </body>
+
+</html>
