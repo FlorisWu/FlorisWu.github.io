@@ -1,0 +1,13 @@
+Year	Number of cookbooks sold	Number of science books sold	Number of dictionaries sold
+2007	67	45	54
+2008	59	78	66
+2009	39	89	99
+2010	59	90	75
+2011	32	55	68
+2012	46	77	79
+2013	77	75	86
+2014	44	56	54
+2015	98	34	38
+2016	76	46	55
+2017	58	50	58
+2018	36	98	49

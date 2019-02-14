@@ -30,7 +30,7 @@ var starterData = [
 
 function redrawCircles() {
     var newCircles=svg.selectAll(".dot")
-    .data(starterData);
+        .data(starterData);
     
     newCircles.enter().append("circle")
         .attr("class","dot")

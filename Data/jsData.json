@@ -1,0 +1,15 @@
+[
+    {
+        "city": "Boston",
+        "accidents": 100
+
+    },
+    {
+        "city": "New York",
+        "accidents": 200
+    },
+    {
+        "city": "Chicago",
+        "accidents":150
+    }
+]
