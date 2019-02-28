@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Data manipulation</title>
+        <h1>Data manipulation</h1>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+
+    <body>
+        <svg width=960 height=500></svg>
+        <script> 
+            
+            /* changing names */
+            var categoryNames = {
+                "ART_AND_DESIGN": "A_D",
+                "BOOKS_AND_REFERENCE": "B_R"
+            };
+            
+            d3.csv("googleplaystore.csv", function(error, data) {
+                console.log(data);
+                data.forEach(function(d,i) {
+                    d.Rating = parseFloat(d.Rating); //changing string (words) to numbers
+                    d.random_variable = "Flo made this"; //adding data that you want
+                    d.rank = i+1; // adding data that you want
+                    d.abbreviation = categoryNames[d.Category]; // square brackets here for arrays
+                    console.log(d);
+                });
+
+                /* filter some data */
+                var currentData = data.filter(function(d){
+                    return d.Type == "Free";
+                });
+                console.log(currentData);
+
+                var dataExtent = d3.extent(currentData, function(d) {
+                    return d.Rating;
+                });
+                console.log(dataExtent); // this dataExtent function finds the range (maximum and minimum) value of your data, so later you can use it to set x/y axis (.domain(dataExtent))
+
+                var groupedCategory = d3.nest() //grouping data by category
+                  .key(function(d) {
+                      return d.Category;
+                  })
+                  .entries(data); // d3.nest always needs this .entries line!
+
+                console.log("Grouped Categories", groupedCategory);
+
+                groupedCategory.forEach(function(d) {
+                    d.total = d3.sum(d.values, function(row) { //d.values is automatically created by d3.nest
+                        return row.Rating;
+                    });
+                    d.average = d3.mean(d.values, function(row) {
+                        return row.Rating;
+                    });
+                });
+            });
+        </script>
+    </body>
