@@ -1,4 +1,4 @@
-country,export
-usa,100
-mexico,2300
-canada,10
+year,country,export
+2018,us,100
+2017,mx,2300
+2018,ca,10
