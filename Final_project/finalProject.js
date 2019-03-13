@@ -1,5 +1,11 @@
 d3.csv("googleplaystore.csv", function(error, data) {
     console.log("csv:", data);
+    var currentData = data.filter(function(d){
+      if (0 <= d.Rating <= 5) {
+        return d.Rating;
+      }
+    });
+  console.log("Current Data", currentData);
 });
 
 const svg = d3.select('svg');
@@ -7,7 +13,7 @@ const svg = d3.select('svg');
 const width = +svg.attr('width');
 const height = +svg.attr('height');
 
-const render = function(data) {
+const render = function(currentData) {
     const xValue = d => d.Rating
     const yValue = d => d.Category
     const margin = { top:50, right:40, bottom:75, left:250};
@@ -15,11 +21,11 @@ const render = function(data) {
     const innerHeight = height - margin.top - margin.bottom;
     
     const xScale = d3.scaleLinear()
-      .domain([0, d3.max(data, xValue)])
+      .domain([0, d3.max(currentData, xValue)])
       .range([0, innerWidth]);
       
     const yScale = d3.scalePoint()
-      .domain(data.map(yValue))
+      .domain(currentData.map(yValue))
       .range([0, innerHeight])
       .padding(0.5);
     
@@ -54,7 +60,7 @@ const render = function(data) {
        .attr('y', -10) /* moving up by 10 px */
        .text('Category')
 
-    a.selectAll('circle').data(data)
+    a.selectAll('circle').data(currentData)
       .enter().append('circle')
         .attr('cy', d => yScale(yValue(d)))
         .attr('cx', d => xScale(xValue(d)))
@@ -68,9 +74,9 @@ const render = function(data) {
     
 };
 
-d3.csv("googleplaystore.csv", function(error, data) {
-    data.forEach(function(d) {
+d3.csv("googleplaystore.csv", function(error, currentData) {
+    currentData.forEach(function(d) {
         d.Rating = +d.Rating;
     });
-    render(data);
+    render(currentData);
 });
