@@ -22,9 +22,11 @@ const render = function(data) {
       .padding(0.5);
 
     /* creating color scale to indicate the number of apps at each unique data point */
-    var myColor = d3.scaleSequential()
-      .domain([10,1]) //reversing order of coloring; so yellow – smaller number; purple – larger number
-      .interpolator(d3.interpolateViridis);
+    var myColor = d3.scaleLinear()
+      .domain(d3.extent(data, function(d) { //setting range of color to be the range of our data
+        return d.count;
+      })) 
+      .range(['Khaki','black']);
 
     
     /* group element g */
@@ -66,7 +68,24 @@ const render = function(data) {
         .attr('r', 3)
         .attr("fill", function(d) {
           return myColor(d.count);
-        });
+        })
+      .on("mouseover", function(d) {
+        var xPosition = d3.select(this).attr("cx")
+        var yPosition = d3.select(this).attr("cy")
+    
+    
+        d3.select("tooltip")
+        .style("left", xPosition+"px")
+        .style("top", yPosition+"px")
+        .select("#value")
+        .text(d);
+      
+        d3.select("#tooltip").classed("hidden", false);
+       })
+       .selectAll("circle")
+         .on("mouseout", function() {
+          d3.select("#tooltip").classed("hidden", true);
+       })
     
     
     /* remove unnecessary lines */
@@ -113,5 +132,6 @@ d3.csv("googleplaystore.csv", function(error, data) {
   
 console.log("Current Data", currentData);
 });
+
 
 
