@@ -3,6 +3,8 @@ const svg = d3.select('svg');
 const width = +svg.attr('width');
 const height = +svg.attr('height');
 
+
+
 const render = function(data) {
     const xValue = d => d.rating
     const yValue = d => d.category
@@ -69,23 +71,21 @@ const render = function(data) {
         .attr("fill", function(d) {
           return myColor(d.count);
         })
-      .on("mouseover", function(d) {
-        var xPosition = d3.select(this).attr("cx")
-        var yPosition = d3.select(this).attr("cy")
-    
-    
-        d3.select("tooltip")
-        .style("left", xPosition+"px")
-        .style("top", yPosition+"px")
-        .select("#value")
-        .text(d);
-      
-        d3.select("#tooltip").classed("hidden", false);
-       })
-       .selectAll("circle")
-         .on("mouseout", function() {
-          d3.select("#tooltip").classed("hidden", true);
-       })
+      /* creating tooltips for data points */
+      .on("mousemove", function(d) {
+        var mouse=d3.mouse(document.body);
+        
+        d3.select("#tooltip")
+        .style("display", "block")
+        .html("Number of "+ yValue(d) +" apps with rating "+xValue(d)+ ": " +d.count)
+        .style("left", mouse[0]+"px")
+        .style("top", mouse[1]-20+"px");
+      })
+
+      .on("mouseout", function(d) {
+        d3.select("#tooltip")
+             .style("display","none")
+      });
     
     
     /* remove unnecessary lines */
