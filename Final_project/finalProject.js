@@ -3,6 +3,41 @@ const svg = d3.select('svg');
 const width = +svg.attr('width');
 const height = +svg.attr('height');
 
+var categoryNames = {
+  "ART_AND_DESIGN": "art and design",
+  "AUTO_AND_VEHICLES": "auto and vehicles",
+  "BEAUTY": "beauty",
+  "BOOKS_AND_REFERENCE": "books and reference",
+  "BUSINESS": "business",
+  "COMICS": "comics",
+  "COMMUNICATION": "communication",
+  "DATING": "dating",
+  "EDUCATION": "education",
+  "ENTERTAINMENT": "entertainment",
+  "EVENTS": "events",
+  "FINANCE": "finance",
+  "FOOD_AND_DRINK": "food and drink",
+  "HEALTH_AND_FITNESS": "health and fitness",
+  "HOUSE_AND_HOME": "house and home",
+  "LIBRARIES_AND_DEMO": "libraries and demo",
+  "LIFESTYLE": "lifestyle",
+  "GAME": "game",
+  "FAMILY": "family",
+  "MEDICAL": "medical",
+  "SOCIAL": "social",
+  "SHOPPING": "shopping",
+  "PHOTOGRAPHY": "photography",
+  "SPORTS": "sports",
+  "TRAVEL_AND_LOCAL": "travel and local",
+  "TOOLS": "tools",
+  "PERSONALIZATION": "personalization",
+  "PRODUCTIVITY": "productivity",
+  "PARENTING": "parenting",
+  "WEATHER": "weather",
+  "VIDEO_PLAYERS": "video players",
+  "NEWS_AND_MAGAZINES": "news and magazines",
+  "MAPS_AND_NAVIGATION": "maps and navigation"
+};
 
 
 const render = function(data) {
@@ -71,7 +106,11 @@ const render = function(data) {
         .attr("fill", function(d) {
           return myColor(d.count);
         })
+    
       /* creating tooltips for data points */
+      .on('click', function(d) {
+        console.log(d);
+      })
       .on("mousemove", function(d) {
         var mouse=d3.mouse(document.body);
         
@@ -103,6 +142,7 @@ d3.csv("googleplaystore.csv", function(error, data) {
   console.log("csv:", data);
   data.forEach(function(d) {
     d.Rating =+ d.Rating;
+    d.newNames = categoryNames[d.Category]
   });
   
   var currentData = data.filter(function(d) {
@@ -120,7 +160,7 @@ d3.csv("googleplaystore.csv", function(error, data) {
   });
 
   groupedCategory_Rating.forEach(function(d) {
-    d.category = d.values[0].Category; //finding the unique category for each unique data point so we dont have to put multiple data points at one location
+    d.category = d.values[0].newNames; //finding the unique category for each unique data point so we dont have to put multiple data points at one location
   });
 
   groupedCategory_Rating.forEach(function(d) {

@@ -24,7 +24,7 @@ text {
 }
 
 .tick text{
-    font-size: 0.9em;
+    font-size: 1.5em;
     fill: #635F5D;
 }
 
@@ -33,12 +33,12 @@ text {
 }
 
 .axis-label {
-    font-size: 0.9em;
+    font-size: 2em;
     fill: #8E8883;
 }
 
 .title {
-    font-size: 0.9em;
+    font-size: 1.5em;
     fill: green; 
 }
 
@@ -71,5 +71,6 @@ circle:hover {
     -moz-box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     pointer-events: none;
+    display: none;
 }
 
