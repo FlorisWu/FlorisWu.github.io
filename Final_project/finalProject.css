@@ -71,6 +71,6 @@ circle:hover {
     -moz-box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     pointer-events: none;
-    display: none;
+    display: none; /* this line makes sure we don't already have a tooltip displayed somewhere before we put the mouse over any data point */
 }
 

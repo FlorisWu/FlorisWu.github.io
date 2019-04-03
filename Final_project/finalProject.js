@@ -1,7 +1,7 @@
-const svg = d3.select('svg');
+const svg1 = d3.select("#svg1");
 
-const width = +svg.attr('width');
-const height = +svg.attr('height');
+const width1 = +svg1.attr('width');
+const height1 = +svg1.attr('height');
 
 var categoryNames = {
   "ART_AND_DESIGN": "art and design",
@@ -41,11 +41,11 @@ var categoryNames = {
 
 
 const render = function(data) {
-    const xValue = d => d.rating
+    const xValue = d => d.rating // d => d.rating here is basically saying "for each datum in data, set its xValue to be its rating"
     const yValue = d => d.category
     const margin = { top:50, right:40, bottom:75, left:250};
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
+    const innerWidth = width1 - margin.left - margin.right;
+    const innerHeight = height1 - margin.top - margin.bottom;
     
     /* creating x scale for x axis */
     const xScale = d3.scaleLinear()
@@ -66,14 +66,20 @@ const render = function(data) {
       .range(['Khaki','black']);
 
     
-    /* group element g */
-    const a = svg.append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    /* grouping element a to make a rectangle which will be transformed to give us marginal space; 
+    elements will then get added to this rectangle, such as text, circles... 
+    this is done by a.append in the code below */
+    const a = svg1.append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`); //this line is using the margin convention to create some space for our axis at the margin
+      /* margin.left pushes the rectangle to the right; margin.top pushes it down */
 
-    /* showing M (million) instead of G on the x axis */
+    /* showing 0.5 instead of 500m on the x axis, and keeping only one 0 after decimal point*/
     const xAxisTickFormat = number =>
-      d3.format('.3s')(number)
-        .replace('G', 'B');
+      d3.format('.2s')(number)
+        .replace('500', '0.5')
+        .replace('m', ' ');
+
+    
 
     const xAxis = d3.axisBottom(xScale)
       .tickFormat(xAxisTickFormat)
@@ -99,7 +105,7 @@ const render = function(data) {
 
     /* creating the data points */
     a.selectAll('circle').data(data)
-      .enter().append('circle')
+      .enter().append('circle') //using the "enter" function (of "enter", "update" and "exit") of a d3 data join here 
         .attr('cy', d => yScale(yValue(d)))
         .attr('cx', d => xScale(xValue(d)))
         .attr('r', 3)
@@ -149,7 +155,7 @@ d3.csv("googleplaystore.csv", function(error, data) {
     return d.Rating <= 5 && d.Rating >= 0;
   });
   
-  var groupedCategory_Rating = d3.nest() //grouping data by category
+  var groupedCategory_Rating = d3.nest() //grouping data by category and rating
     .key(function(d) {
       return d.Category + " " + d.Rating;
     })
@@ -179,22 +185,31 @@ console.log("Current Data", currentData);
     .entries(currentData);
 
   console.log("Grouped Categories", groupedCategory);
+  
+  console.log("Partitioned grouped categories", partition(groupedCategory));
+  chart(groupedCategory);
+
+
 });
 
 
-chart = {
+const chart = function(data) {
   
-  const root = partition(data);
+  //const root = partition(data);
 
-  root.each(d => d.current = d);
+  //root.each(d => d.current = d)
 
-  const svg = d3.select(DOM.svg(width, width))
-      .style("width", "100%")
-      .style("height", "auto")
-      .style("font", "10px sans-serif");
+  const svg2 = d3.select("#svg2")
+  const width2 = +svg2.attr('width');
+  const height2 = +svg2.attr('height');
 
-  const g = svg.append("g")
-      .attr("transform", `translate(${width / 2},${width / 2})`);
+  //const svg = d3.select(DOM.svg(width, width))
+  //    .style("width", "100%")
+  //    .style("height", "auto")
+  //    .style("font", "10px sans-serif")
+
+  const g = svg2.append("g")
+      .attr("transform", `translate(${width2 / 2},${width2 / 2})`);
 
   const path = g.append("g")
     .selectAll("path")
@@ -279,6 +294,17 @@ chart = {
 
   return svg.node();
 }
+
+const partition = function(data) {
+  const root = d3.hierarchy(d)
+    .sum(d => d.value)
+    .sort((a, b) => b.value - a.value);
+  return d3.partition()
+      .size([2 * Math.PI, root.height + 1])
+    (root);
+} //this splits the data into "parent" "children" format
+  
+      
 
 
 
