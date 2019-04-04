@@ -295,8 +295,8 @@ const chart = function(data) {
   return svg.node();
 }
 
-const partition = function(data) {
-  const root = d3.hierarchy(d)
+const partition = data => {
+  const root = d3.hierarchy(data)
     .sum(d => d.value)
     .sort((a, b) => b.value - a.value);
   return d3.partition()
