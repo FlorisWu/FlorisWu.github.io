@@ -208,19 +208,19 @@ const chart = function(data) {
   //    .style("height", "auto")
   //    .style("font", "10px sans-serif")
 
-  const g = svg2.append("g")
-      .attr("transform", `translate(${width2 / 2},${width2 / 2})`);
+  const g = svg2.append("g") //like before, this is creating a rectangle so we can append elements to the rectangle? 
+      .attr("transform", `translate(${width2 / 2},${width2 / 2})`); // providing marginal space?
 
   const path = g.append("g")
     .selectAll("path")
-    .data(root.descendants().slice(1))
+    .data(root.descendants().slice(1)) // accessing the "descendants" of the "root" in "partition"
     .join("path")
-      .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
-      .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
-      .attr("d", d => arc(d.current));
+      .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); }) // I think this line is saying that if the "depth" is bigger than 1, then make it a parent and assign some color
+      .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0) // arcVisible function is defined later
+      .attr("d", d => arc(d.current)); // this creates an arc/curve
 
   path.filter(d => d.children)
-      .style("cursor", "pointer")
+      .style("cursor", "pointer") //This makes the first layer of "children" clickable
       .on("click", clicked);
 
   path.append("title")
@@ -234,8 +234,8 @@ const chart = function(data) {
     .data(root.descendants().slice(1))
     .join("text")
       .attr("dy", "0.35em")
-      .attr("fill-opacity", d => +labelVisible(d.current))
-      .attr("transform", d => labelTransform(d.current))
+      .attr("fill-opacity", d => +labelVisible(d.current)) //labelVisible function is defined later
+      .attr("transform", d => labelTransform(d.current)) //labelTransform function is defined later
       .text(d => d.data.name);
 
   const parent = g.append("circle")
@@ -295,14 +295,14 @@ const chart = function(data) {
   return svg.node();
 }
 
-const partition = data => {
+const partition = data => {  //this splits the data into "parent" "children" format
   const root = d3.hierarchy(data)
-    .sum(d => d.value)
-    .sort((a, b) => b.value - a.value);
+    .sum(d => d.value) // I think this line assigns a value to each "child"
+    .sort((a, b) => b.value - a.value); // I think this line sort out which "child" belongs to which "parent"?
   return d3.partition()
-      .size([2 * Math.PI, root.height + 1])
+      .size([2 * Math.PI, root.height + 1]) // this is drawing the circle; hence the pi?
     (root);
-} //this splits the data into "parent" "children" format
+}
   
       
 
