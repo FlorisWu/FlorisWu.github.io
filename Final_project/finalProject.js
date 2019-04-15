@@ -223,12 +223,10 @@ var labelArc = d3.arc() // this function sets our labels to be in the center of 
       .outerRadius(radius-50)
       .innerRadius(radius-50);
 
-const svg2=d3.select("#svg2");
-
-//const width2 = +svg2.attr('width');
-//const height2 = +svg2.attr('height');
-
-const g = svg2.append('g') //just like before, we are creating a group element
+const svg2=d3.select("#svg2").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
         .attr('transform', "translate(" + width/2 + "," + height/2 + ") "); //translating so that the center of is at half of the width and half of the height
 
 
@@ -268,6 +266,7 @@ d3.csv("googleplaystore.csv", function(error, data) {
   //console.log(groupedCategory);
 
   // now we need to create the arcs using the SVG. the arc element does not exist on the DOM but will be created after through the enter function
+  
   // append g elements (arc)
 
   var g = svg2.selectAll("arc") // this line is selecting all the elements with the class name "arc"; it doesnt exist yet, but it will after it reaches the line .enter().append()
@@ -282,9 +281,9 @@ d3.csv("googleplaystore.csv", function(error, data) {
 
   // append the text (labels)
   g.append("text")
-    .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; })
+    .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; }) //centroid computes the mid point
     .attr("dy", ".35em")
-    .text(function(d){ return d.category;} );
+    .text(function(d) {return d.data.Category;} )
 
 });
 
