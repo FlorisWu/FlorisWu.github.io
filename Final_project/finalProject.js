@@ -160,6 +160,8 @@ d3.csv("googleplaystore.csv", function(error, data) {
       return d.Category + " " + d.Rating;
     })
     .entries(currentData); // d3.nest always needs this .entries line!
+
+
   
   groupedCategory_Rating.forEach(function(d) {
     d.count = d.values.length; //finding count of apps for each unique data point
@@ -184,127 +186,105 @@ console.log("Current Data", currentData);
     })
     .entries(currentData);
 
-  console.log("Grouped Categories", groupedCategory);
+  groupedCategory.forEach(function(d) {
+    d.count = d.values.length;
+    d.name = d.values[0].newNames;
+  })
+
   
-  console.log("Partitioned grouped categories", partition(groupedCategory));
-  chart(groupedCategory);
-
-
+console.log("grouped catogories", groupedCategory)
 });
 
 
-const chart = function(data) {
+
+/* second visualization */
+ 
+
+
+// setting up margin and radius
+var margin = {top:20,right:20,bottom:20,left:20},
+      width = 500 - margin.right - margin.left,
+      height = 500 - margin.top - margin.bottom,
+      radius = width/2;
+
+// generating the arc for the pie chart; we need the arc generator first before we can create the pie.
+var arc = d3.arc()
+      .outerRadius(radius-10) //specifying outer radius
+      .innerRadius(0); //specifying intter radius
+
+// once you've set up the arc generator, you can set up the pie generator.
+var pie = d3.pie()
+      .sort(null) // we don't really want to sort any values
+      .value(function(d) {
+        return d.count; // returning value of each category
+      });
+
+var labelArc = d3.arc() // this function sets our labels to be in the center of each arc
+      .outerRadius(radius-50)
+      .innerRadius(radius-50);
+
+const svg2=d3.select("#svg2");
+
+//const width2 = +svg2.attr('width');
+//const height2 = +svg2.attr('height');
+
+const g = svg2.append('g') //just like before, we are creating a group element
+        .attr('transform', "translate(" + width/2 + "," + height/2 + ") "); //translating so that the center of is at half of the width and half of the height
+
+
+// import data using the d3.csv() function
+d3.csv("googleplaystore.csv", function(error, data) {
+  if (error) throw error;
+
+  data.forEach(function(d) {
+    d.Rating =+ d.Rating;
+    d.newNames = categoryNames[d.Category] //rewriting names of categories
+  });
   
-  //const root = partition(data);
+  var currentData = data.filter(function(d) {
+    return d.Rating <= 5 && d.Rating >= 0;
+  });
 
-  //root.each(d => d.current = d)
+  var groupedCategory = d3.nest() //grouping data by category
+    .key(function(d) {
+      return d.Category;
+    })
+    .entries(currentData);
 
-  const svg2 = d3.select("#svg2")
-  const width2 = +svg2.attr('width');
-  const height2 = +svg2.attr('height');
+  groupedCategory.forEach(function(d) {
+    d.count = d.values.length;
+    d.name = d.values[0].newNames;
 
-  //const svg = d3.select(DOM.svg(width, width))
-  //    .style("width", "100%")
-  //    .style("height", "auto")
-  //    .style("font", "10px sans-serif")
+  });
 
-  const g = svg2.append("g") //like before, this is creating a rectangle so we can append elements to the rectangle? 
-      .attr("transform", `translate(${width2 / 2},${width2 / 2})`); // providing marginal space?
+  console.log(groupedCategory);
 
-  const path = g.append("g")
-    .selectAll("path")
-    .data(root.descendants().slice(1)) // accessing the "descendants" of the "root" in "partition"
-    .join("path")
-      .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); }) // I think this line is saying that if the "depth" is bigger than 1, then make it a parent and assign some color
-      .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0) // arcVisible function is defined later
-      .attr("d", d => arc(d.current)); // this creates an arc/curve
+  // parse data
+  groupedCategory.forEach(function(d) {
+    d.count = d.count;
+    d.category = d.name;
+  });
 
-  path.filter(d => d.children)
-      .style("cursor", "pointer") //This makes the first layer of "children" clickable
-      .on("click", clicked);
+  //console.log(groupedCategory);
 
-  path.append("title")
-      .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
+  // now we need to create the arcs using the SVG. the arc element does not exist on the DOM but will be created after through the enter function
+  // append g elements (arc)
 
-  const label = g.append("g")
-      .attr("pointer-events", "none")
-      .attr("text-anchor", "middle")
-      .style("user-select", "none")
-    .selectAll("text")
-    .data(root.descendants().slice(1))
-    .join("text")
-      .attr("dy", "0.35em")
-      .attr("fill-opacity", d => +labelVisible(d.current)) //labelVisible function is defined later
-      .attr("transform", d => labelTransform(d.current)) //labelTransform function is defined later
-      .text(d => d.data.name);
+  var g = svg2.selectAll("arc") // this line is selecting all the elements with the class name "arc"; it doesnt exist yet, but it will after it reaches the line .enter().append()
+        .data(pie(groupedCategory)) // for the pie function, if you go up and check the function, it returns d.count
+        .enter().append("g") // all group elements "g" will have the class name "arc"; so we can style them together in css
+        .attr("class", "arc");
 
-  const parent = g.append("circle")
-      .datum(root)
-      .attr("r", radius)
-      .attr("fill", "none")
-      .attr("pointer-events", "all")
-      .on("click", clicked);
+  // append path of the arc
+  g.append("path")
+    .attr("d", arc) //passing the arc generator we created earlier
+    .style("fill", "blue")
 
-  function clicked(p) {
-    parent.datum(p.parent || root);
+  // append the text (labels)
+  g.append("text")
+    .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; })
+    .attr("dy", ".35em")
+    .text(function(d){ return d.category;} );
 
-    root.each(d => d.target = {
-      x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
-      x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
-      y0: Math.max(0, d.y0 - p.depth),
-      y1: Math.max(0, d.y1 - p.depth)
-    });
-
-    const t = g.transition().duration(750);
-
-    // Transition the data on all arcs, even the ones that aren’t visible,
-    // so that if this transition is interrupted, entering arcs will start
-    // the next transition from the desired position.
-    path.transition(t)
-        .tween("data", d => {
-          const i = d3.interpolate(d.current, d.target);
-          return t => d.current = i(t);
-        })
-      .filter(function(d) {
-        return +this.getAttribute("fill-opacity") || arcVisible(d.target);
-      })
-        .attr("fill-opacity", d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
-        .attrTween("d", d => () => arc(d.current));
-
-    label.filter(function(d) {
-        return +this.getAttribute("fill-opacity") || labelVisible(d.target);
-      }).transition(t)
-        .attr("fill-opacity", d => +labelVisible(d.target))
-        .attrTween("transform", d => () => labelTransform(d.current));
-  }
-  
-  function arcVisible(d) {
-    return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0;
-  }
-
-  function labelVisible(d) {
-    return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
-  }
-
-  function labelTransform(d) {
-    const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
-    const y = (d.y0 + d.y1) / 2 * radius;
-    return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
-  }
-
-  return svg.node();
-}
-
-const partition = data => {  //this splits the data into "parent" "children" format
-  const root = d3.hierarchy(data)
-    .sum(d => d.value) // I think this line assigns a value to each "child"
-    .sort((a, b) => b.value - a.value); // I think this line sort out which "child" belongs to which "parent"?
-  return d3.partition()
-      .size([2 * Math.PI, root.height + 1]) // this is drawing the circle; hence the pi?
-    (root);
-}
-  
-      
-
-
+});
 
