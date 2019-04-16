@@ -203,14 +203,19 @@ console.log("grouped catogories", groupedCategory)
 
 // setting up margin and radius
 var margin = {top:20,right:20,bottom:20,left:20},
-      width = 500 - margin.right - margin.left,
-      height = 500 - margin.top - margin.bottom,
-      radius = width/2;
+      width = 1030 - margin.right - margin.left,
+      height = 700 - margin.top - margin.bottom,
+      radius = width/3;
+
+
+var color=d3.scaleOrdinal()
+      .range(["#BBDEFB", "#98CAF9", "#64B5F6", "#42A5F5", "#2196F3", "#1E88E5", "#1976D2"])
+
 
 // generating the arc for the pie chart; we need the arc generator first before we can create the pie.
 var arc = d3.arc()
       .outerRadius(radius-10) //specifying outer radius
-      .innerRadius(0); //specifying intter radius
+      .innerRadius(radius-180); //specifying inner radius
 
 // once you've set up the arc generator, you can set up the pie generator.
 var pie = d3.pie()
@@ -233,6 +238,8 @@ const svg2=d3.select("#svg2").append("svg")
 // import data using the d3.csv() function
 d3.csv("googleplaystore.csv", function(error, data) {
   if (error) throw error;
+
+  
 
   data.forEach(function(d) {
     d.Rating =+ d.Rating;
@@ -263,13 +270,15 @@ d3.csv("googleplaystore.csv", function(error, data) {
     d.category = d.name;
   });
 
+
+
   //console.log(groupedCategory);
 
   // now we need to create the arcs using the SVG. the arc element does not exist on the DOM but will be created after through the enter function
   
   // append g elements (arc)
 
-  var g = svg2.selectAll("arc") // this line is selecting all the elements with the class name "arc"; it doesnt exist yet, but it will after it reaches the line .enter().append()
+  var g = svg2.selectAll(".arc") // this line is selecting all the elements with the class name "arc"; it doesnt exist yet, but it will after it reaches the line .enter().append()
         .data(pie(groupedCategory)) // for the pie function, if you go up and check the function, it returns d.count
         .enter().append("g") // all group elements "g" will have the class name "arc"; so we can style them together in css
         .attr("class", "arc");
@@ -277,13 +286,52 @@ d3.csv("googleplaystore.csv", function(error, data) {
   // append path of the arc
   g.append("path")
     .attr("d", arc) //passing the arc generator we created earlier
-    .style("fill", "blue")
+    .style("fill", function(d) {return color(d.data.category)})
+
+    /* creating tooltips */
+    .on('click', function(d) {
+      console.log(d);
+    })
+    .on("mousemove", function(d) {
+      var mouse=d3.mouse(document.body);
+      
+      d3.select("#tooltip")
+      .style("display", "block")
+      .html("Number of "+ d.data.category +" apps: " +d.data.count)
+      .style("left", mouse[0]+"px")
+      .style("top", mouse[1]-20+"px");
+    })
+
+    .on("mouseout", function(d) {
+      d3.select("#tooltip")
+           .style("display","none")
+    })
+
+
+    .transition() // transition, ease, duration and attrTween are used to create the animation where the pie chart pops up
+    .ease(d3.easeLinear)
+    .duration(1000)
+    .attrTween("d", pieTween) // pieTween is defined at the bottom
+    
+    
 
   // append the text (labels)
-  g.append("text")
+  /*g.append("text")
+    .transition() // transition, ease, duration and attrTween are used to create the animation where the pie chart pops up
+    .ease(d3.easeLinear)
+    .duration(1000)
     .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; }) //centroid computes the mid point
     .attr("dy", ".35em")
-    .text(function(d) {return d.data.Category;} )
+    .text(function(d) {return d.data.category;} )*/
+    /* creating tooltips */
+  
 
 });
 
+
+function pieTween(b) {
+  b.innerRadius = 0; // need to start at 0 to transition from 0 to a full arc
+  var i = d3.interpolate({startAngle:0, endAngle:0}, b); // the angle should start at 0 and end at 0
+  return function(t) {return arc(i(t));};
+
+};
