@@ -3,6 +3,15 @@ body {
     overflow: visible;
 }
 
+path:hover {
+    fill:rgb(255, 30, 0) !important;
+}
+
+p#paragraph1 {
+    font-size: 1.2em;
+    margin: 50px 250px;
+    text-align: justify;
+}
 
 
 h1 {
@@ -77,15 +86,7 @@ circle:hover {
     stroke: #fff; /* giving strokes (space between sections) to the pie chart to make it more readable */
 }
 
-path:hover {
-    fill:rgb(255, 30, 0) !important;
-}
 
-p#paragraph1 {
-    font-size: 1.2em;
-    margin: 50px 250px;
-    text-align: justify;
-}
 
 
 
