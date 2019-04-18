@@ -310,7 +310,7 @@ d3.csv("googleplaystore.csv", function(error, data) {
 
     .transition() // transition, ease, duration and attrTween are used to create the animation where the pie chart pops up
     .ease(d3.easeLinear)
-    .duration(1000)
+    .duration(3000)
     .attrTween("d", pieTween) // pieTween is defined at the bottom
     
     

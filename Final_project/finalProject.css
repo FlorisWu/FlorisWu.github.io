@@ -42,9 +42,7 @@ text {
     fill: green; 
 }
 
-p#photoCaption {
-    text-align: right;
-}
+
 
 circle {
     -moz-transition: all 0.3s;
@@ -80,6 +78,14 @@ circle:hover {
 }
 
 path:hover {
-    fill:rgb(255, 30, 0);
+    fill:rgb(255, 30, 0) !important;
 }
+
+p#paragraph1 {
+    font-size: 1.2em;
+    margin: 50px 250px;
+    text-align: justify;
+}
+
+
 
