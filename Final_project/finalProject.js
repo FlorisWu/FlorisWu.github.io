@@ -226,8 +226,8 @@ var pie = d3.pie()
       });
 
 var labelArc = d3.arc() // this function sets our labels to be in the center of each arc
-      .outerRadius(radius+70)
-      .innerRadius(radius+50);
+      .outerRadius(radius+120)
+      .innerRadius(radius);
 
 const svg2=d3.select("#svg2").append("svg")
         .attr("width", width)
@@ -323,9 +323,9 @@ d3.csv("googleplaystore.csv", function(error, data) {
     .duration(1000)
     .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; }) //centroid computes the mid point
     .attr("dy", ".35em")
-    .text(function(d) {d.filter(function(a) {
-      return a.data.count >=200 ;
-    })})
+    .text(function(d) {if (d.data.count >=300) {
+      return d.data.category ;
+    }})
     //.text(function(d) {return d.data.category;} )
 
 });
