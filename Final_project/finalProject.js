@@ -122,7 +122,7 @@ const render = function(data) {
         
         d3.select("#tooltip")
         .style("display", "block")
-        .html("Number of "+ yValue(d) +" apps with rating "+xValue(d)+ ": " +d.count)
+        .html(yValue(d) +" apps with rating "+xValue(d)+ ": " +d.count)
         .style("left", mouse[0]+"px")
         .style("top", mouse[1]-20+"px");
       })
@@ -204,12 +204,13 @@ console.log("grouped catogories", groupedCategory)
 // setting up margin and radius
 var margin = {top:20,right:20,bottom:20,left:20},
       width = 1030 - margin.right - margin.left,
-      height = 700 - margin.top - margin.bottom,
+      height = 1000 - margin.top - margin.bottom,
       radius = width/3;
 
 
 var color=d3.scaleOrdinal()
-      .range(["#BBDEFB", "#98CAF9", "#64B5F6", "#42A5F5", "#2196F3", "#1E88E5", "#1976D2"])
+        //.range(["#87CEFA", "#1E90FF","#00BFFF", "#000080","#0000FF"])
+        .range(["#BBDEFB", "#98CAF9", "#42A5F5", "#2196F3", "#1E88E5", "#1976D2","#64B5F6"])
 
 
 // generating the arc for the pie chart; we need the arc generator first before we can create the pie.
@@ -225,8 +226,8 @@ var pie = d3.pie()
       });
 
 var labelArc = d3.arc() // this function sets our labels to be in the center of each arc
-      .outerRadius(radius-50)
-      .innerRadius(radius-50);
+      .outerRadius(radius+70)
+      .innerRadius(radius+50);
 
 const svg2=d3.select("#svg2").append("svg")
         .attr("width", width)
@@ -297,7 +298,7 @@ d3.csv("googleplaystore.csv", function(error, data) {
       
       d3.select("#tooltip")
       .style("display", "block")
-      .html("Number of "+ d.data.category +" apps: " +d.data.count)
+      .html(d.data.category +" apps: " +d.data.count)
       .style("left", mouse[0]+"px")
       .style("top", mouse[1]-20+"px");
     })
@@ -316,17 +317,20 @@ d3.csv("googleplaystore.csv", function(error, data) {
     
 
   // append the text (labels)
-  /*g.append("text")
+  g.append("text")
     .transition() // transition, ease, duration and attrTween are used to create the animation where the pie chart pops up
     .ease(d3.easeLinear)
     .duration(1000)
     .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; }) //centroid computes the mid point
     .attr("dy", ".35em")
-    .text(function(d) {return d.data.category;} )*/
-    /* creating tooltips */
-  
+    .text(function(d) {d.filter(function(a) {
+      return a.data.count >=200 ;
+    })})
+    //.text(function(d) {return d.data.category;} )
 
 });
+
+  
 
 
 function pieTween(b) {
