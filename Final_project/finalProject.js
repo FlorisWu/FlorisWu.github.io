@@ -3,40 +3,45 @@ const svg1 = d3.select("#svg1");
 const width1 = +svg1.attr('width');
 const height1 = +svg1.attr('height');
 
+/*const svg3 = d3.select("#svg3");
+
+const width3 = +svg3.attr('width');
+const height3 = +svg3.attr('height'); */
+
 var categoryNames = {
-  "ART_AND_DESIGN": "art and design",
-  "AUTO_AND_VEHICLES": "auto and vehicles",
-  "BEAUTY": "beauty",
-  "BOOKS_AND_REFERENCE": "books and reference",
-  "BUSINESS": "business",
-  "COMICS": "comics",
-  "COMMUNICATION": "communication",
-  "DATING": "dating",
-  "EDUCATION": "education",
-  "ENTERTAINMENT": "entertainment",
-  "EVENTS": "events",
-  "FINANCE": "finance",
-  "FOOD_AND_DRINK": "food and drink",
-  "HEALTH_AND_FITNESS": "health and fitness",
-  "HOUSE_AND_HOME": "house and home",
-  "LIBRARIES_AND_DEMO": "libraries and demo",
-  "LIFESTYLE": "lifestyle",
-  "GAME": "game",
-  "FAMILY": "family",
-  "MEDICAL": "medical",
-  "SOCIAL": "social",
-  "SHOPPING": "shopping",
-  "PHOTOGRAPHY": "photography",
-  "SPORTS": "sports",
-  "TRAVEL_AND_LOCAL": "travel and local",
-  "TOOLS": "tools",
-  "PERSONALIZATION": "personalization",
-  "PRODUCTIVITY": "productivity",
-  "PARENTING": "parenting",
-  "WEATHER": "weather",
-  "VIDEO_PLAYERS": "video players",
-  "NEWS_AND_MAGAZINES": "news and magazines",
-  "MAPS_AND_NAVIGATION": "maps and navigation"
+  "ART_AND_DESIGN": "Art and design",
+  "AUTO_AND_VEHICLES": "Auto and vehicles",
+  "BEAUTY": "Beauty",
+  "BOOKS_AND_REFERENCE": "Books and reference",
+  "BUSINESS": "Business",
+  "COMICS": "Comics",
+  "COMMUNICATION": "Communication",
+  "DATING": "Dating",
+  "EDUCATION": "Education",
+  "ENTERTAINMENT": "Entertainment",
+  "EVENTS": "Events",
+  "FINANCE": "Finance",
+  "FOOD_AND_DRINK": "Food and drink",
+  "HEALTH_AND_FITNESS": "Health and fitness",
+  "HOUSE_AND_HOME": "House and home",
+  "LIBRARIES_AND_DEMO": "Libraries and demo",
+  "LIFESTYLE": "Lifestyle",
+  "GAME": "Game",
+  "FAMILY": "Family",
+  "MEDICAL": "Medical",
+  "SOCIAL": "Social",
+  "SHOPPING": "Shopping",
+  "PHOTOGRAPHY": "Photography",
+  "SPORTS": "Sports",
+  "TRAVEL_AND_LOCAL": "Travel and local",
+  "TOOLS": "Tools",
+  "PERSONALIZATION": "Personalization",
+  "PRODUCTIVITY": "Productivity",
+  "PARENTING": "Parenting",
+  "WEATHER": "Weather",
+  "VIDEO_PLAYERS": "Video players",
+  "NEWS_AND_MAGAZINES": "News and magazines",
+  "MAPS_AND_NAVIGATION": "Maps and navigation"
 };
 
 
@@ -49,7 +54,7 @@ const render = function(data) {
     
     /* creating x scale for x axis */
     const xScale = d3.scaleLinear()
-      .domain([0, d3.max(data, xValue)])
+      .domain([2.8, d3.max(data, xValue)+0.1])
       .range([0, innerWidth]);
       
     /* creating y scale for y axis */
@@ -63,7 +68,14 @@ const render = function(data) {
       .domain(d3.extent(data, function(d) { //setting range of color to be the range of our data
         return d.count;
       })) 
-      .range(['Khaki','black']);
+      .range(['rgb(152,202,249)','black']);
+
+    // creating radius scale to for the bubble chart - larger count with larger size of circle on the chart and vice versa
+    var circleSize = d3.scaleLinear()
+      .domain(d3.extent(data, function(d) { //setting range of color to be the range of our data
+        return d.count;
+      })) 
+      .range([3,10]);
 
     
     /* grouping element a to make a rectangle which will be transformed to give us marginal space; 
@@ -88,17 +100,25 @@ const render = function(data) {
 
       const xAxisA = a.append('g').call(xAxis)
       .attr('transform', `translate(0, ${innerHeight})`);
+
+    const yAxis = d3.axisLeft(yScale)
+      .tickSize(-innerWidth); 
+
+
+      const yAxisA = a.append('g').call(yAxis);
+          //.attr('transform', `translate(0, ${innerWidth})`);
  
-     xAxisA.select('.domain').remove();
+     //xAxisA.select('.domain').remove();
  
      xAxisA.append('text')
        .attr('class', 'axis-label')
-       .attr('y', 60) 
-       .attr('x', innerWidth / 2)
-       .attr('fill', 'black')
+       .attr('y', 60) //specifying y position if the label "Rating"
+       .attr('x', innerWidth / 2) // specifying x position
+       //.attr('fill', 'black')
        .text('Rating');
+
  
-     a.append('text')
+      a.append('text')
        .attr('class', 'title')
        .attr('y', -10) /* moving up by 10 px */
        .text('Category')
@@ -108,10 +128,8 @@ const render = function(data) {
       .enter().append('circle') //using the "enter" function (of "enter", "update" and "exit") of a d3 data join here 
         .attr('cy', d => yScale(yValue(d)))
         .attr('cx', d => xScale(xValue(d)))
-        .attr('r', 3)
-        .attr("fill", function(d) {
-          return myColor(d.count);
-        })
+        .attr('r', function(d) {return circleSize(d.count);})
+        .attr("fill", function(d) {return myColor(d.count);})
     
       /* creating tooltips for data points */
       .on('click', function(d) {
@@ -134,10 +152,10 @@ const render = function(data) {
     
     
     /* remove unnecessary lines */
-    a.append('g')
+    /*a.append('g')
       .call(d3.axisLeft(yScale))
       .selectAll('.domain')
-      .remove();
+      .remove();*/
 
     
         
@@ -174,9 +192,16 @@ d3.csv("googleplaystore.csv", function(error, data) {
   groupedCategory_Rating.forEach(function(d) {
     d.rating = d.values[0].Rating; //finding unique rating for each data point
   });
+
+  var groupedCategory_Rating_filtered = groupedCategory_Rating.filter(function(d) {
+    return d.count >= 10;
+  });
+
+  console.log("grouped data filtered", groupedCategory_Rating_filtered);
   
   console.log("Grouped Categories and Rating", groupedCategory_Rating);
-  render(groupedCategory_Rating);
+  //render(groupedCategory_Rating);
+  render(groupedCategory_Rating_filtered);
   
 console.log("Current Data", currentData);
 
@@ -225,8 +250,8 @@ var pie = d3.pie()
         return d.count; // returning value of each category
       });
 
-var labelArc = d3.arc() // this function sets our labels to be in the center of each arc
-      .outerRadius(radius+120)
+var labelArc = d3.arc() // this function sets our labels to be at the outside of each arc
+      .outerRadius(radius+60)
       .innerRadius(radius);
 
 const svg2=d3.select("#svg2").append("svg")
@@ -284,6 +309,9 @@ d3.csv("googleplaystore.csv", function(error, data) {
         .enter().append("g") // all group elements "g" will have the class name "arc"; so we can style them together in css
         .attr("class", "arc");
 
+
+
+
   // append path of the arc
   g.append("path")
     .attr("d", arc) //passing the arc generator we created earlier
@@ -313,20 +341,22 @@ d3.csv("googleplaystore.csv", function(error, data) {
     .ease(d3.easeLinear)
     .duration(3000)
     .attrTween("d", pieTween) // pieTween is defined at the bottom
+
+      // append the text (labels)
+  g.append("text")
+  .transition() // transition, ease, duration and attrTween are used to create the animation where the text goes from center to outside
+  .ease(d3.easeLinear)
+  .duration(3000)
+  
+  .attr("transform", function(d) {return "translate(" + (labelArc.centroid(d)[0]-40) + "," + labelArc.centroid(d)[1] + ")";  }) //centroid helps identify the path of each text label from center to the edge; labelArc.centroid(d)[0]-40 is to re-adjust all the text lables by moving them to the left by 40 px
+  //.attr("dy", ".35em")
+  .text(function(d) {if (d.data.count >=300) {
+    return d.data.category ;
+  }})
     
     
 
-  // append the text (labels)
-  g.append("text")
-    .transition() // transition, ease, duration and attrTween are used to create the animation where the pie chart pops up
-    .ease(d3.easeLinear)
-    .duration(1000)
-    .attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; }) //centroid computes the mid point
-    .attr("dy", ".35em")
-    .text(function(d) {if (d.data.count >=300) {
-      return d.data.category ;
-    }})
-    //.text(function(d) {return d.data.category;} )
+  
 
 });
 
@@ -339,3 +369,127 @@ function pieTween(b) {
   return function(t) {return arc(i(t));};
 
 };
+
+/*
+var color1=['blue'];
+var color2=['red'];
+
+function drawBars(width,colors) {
+  rectangles = svg3.selectAll('a').selectAll('rect');
+  var Data = rectangles.data(colors);
+
+  Data.enter().append('rect')
+    .attr('y', d => yScale(yValue(d)))
+    .attr('width', width)
+    .attr('height', 20)
+    .attr('fill', function(d) {return d;});
+
+  Data
+    .attr('y', d => yScale(yValue(d)))
+    .attr('width', width)
+    .attr('height', 20)
+    .attr('fill', function(d) {return d;});
+
+  Data.exit().remove();
+
+};
+
+/* Third visualization */ /*
+const render2 = function(data) {
+  const xValue = d => d.Reviews
+  const xValue2 = d => d.Current_reviews
+  const yValue = d => d.App
+  const margin = { top:50, right:40, bottom:75, left:250};
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+  
+  const xScale = d3.scaleLinear()
+    .domain([0, d3.max(data, xValue)])
+    .range([0, innerWidth]);
+    
+  const yScale = d3.scaleBand()
+    .domain(data.map(yValue))
+    .range([0, innerHeight])
+    .padding(0.1);
+  
+  /* group element g */ /*
+  const a = svg3.append('g')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`); 
+
+  
+  const xAxisTickFormat = number =>
+    d3.format('.3s')(number);
+      //.replace('G', 'B');
+
+  const xAxis = d3.axisBottom(xScale)
+    .tickFormat(xAxisTickFormat)
+    .tickSize(-innerHeight); /* adding vertical lines */
+
+/*
+    const xAxisA = a.append('g').call(xAxis)
+    .attr('transform', `translate(0, ${innerHeight})`);
+
+   xAxisA.select('.domain').remove();
+
+   xAxisA.append('text')
+     .attr('class', 'axis-label')
+     .attr('y', 60) 
+     .attr('x', innerWidth / 2)
+     .attr('fill', 'black')
+     .text('x axis');
+
+   a.append('text')
+     .attr('class', 'title')
+     .attr('y', -10) /* moving up by 10 px */ /*
+     .text('Random title')
+
+    
+  
+  
+  a.selectAll('rect').data(data)
+    .enter().append('rect')
+      .attr('y', d => yScale(yValue(d)))
+      .attr('width', d => xScale(xValue(d)))
+      .attr('height', yScale.bandwidth()/2)
+      .attr('fill', "#64B5F6");
+
+    /*a.data(data).append('rect')
+      .attr('y', d => yScale(yValue(d)))
+      .attr('width', d => xScale(xValue2(d)))
+      .attr('height', yScale.bandwidth())
+      .attr('fill', 'red') */
+
+  
+  /* remove unnecessary lines */ /*
+  a.append('g')
+    .call(d3.axisLeft(yScale))
+    .selectAll('.domain, .tick line')
+    .remove();
+  
+};
+
+
+
+d3.csv("third_visualization.csv", function(error, data) {
+  data.forEach(function(d) {
+    d.Reviews =+ d.Reviews;
+    d.Current_reviews =+ d.Current_reviews;
+  });
+
+ 
+  
+  /*var currentData = data.filter(function(d) {
+    return d.Rating <= 5 && d.Rating >= 0 && d.Reviews>=20000000;
+  });
+  console.log(currentData)*/ /*
+  
+  render2(data);
+}); */
+
+/*
+d3.csv("googleplaystore.csv", function(error, data) {
+  data.forEach(function(d) {
+      d.Reviews = +d.Reviews;
+  });
+  render2(data);
+});*/
