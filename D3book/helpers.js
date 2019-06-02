@@ -104,7 +104,7 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
                             .remove();
             
                     tool.append('text')
-                            .text(d.to);
+                            .text(d.to); }
         
 
             function mousemove () {
@@ -118,7 +118,7 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
                 d3.select('#nicktool').remove(); }
 
 
-        }
+        
     }
 }
             
