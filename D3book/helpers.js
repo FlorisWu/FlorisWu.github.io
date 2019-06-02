@@ -119,8 +119,10 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
 
 
         }
+    }
+}
             
-            }
+            
             
             
         
