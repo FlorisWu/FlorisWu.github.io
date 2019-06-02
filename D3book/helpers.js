@@ -54,8 +54,6 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
                     .attr('transform', function(d) {
                         var degrees = helpers.tickAngle(d);
 
-                        console.log("degrees,",degrees);
-
                         var turn = 'rotate('+degrees+')translate('+(radius(d)+10)+', 0)';
                         
                         if (degrees > 100) {
@@ -67,6 +65,65 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
         }
     },
 
+
+
+    
+
+
+    tooltip: function (text) {
+        return function (selection) {
+
+            selection.on('mouseover.tooltip', mouseover)
+            .on('mousemove.tooltip', mousemove)
+            .on('mouseout.tooltip', mouseout);
+
+           
+            
+
+            function mouseover(d) {
+        
+                var path = d3.select(this);
+                path.classed('highlighted',true);
+
+                var mouse = d3.mouse(svg3.node());
+                var tool = svg3.append('g')
+                                .attr({'id': "nicktool",
+                            transform: 'translate('+(mouse[0]+5)+', '+(mouse[1]+10)+')'});
+            
+                var textNode = tool.append('text')
+                                    .text(d.to).node();
+                    
+            
+                    tool.append('rect')
+                        .attr({height: textNode.getBBox().height,
+                        width: textNode.getBBox().width,
+                    transform: 'translate(0,-16)'});
+
+            
+                    tool.select('text')
+                            .remove();
+            
+                    tool.append('text')
+                            .text(d.to);
+        
+
+            function mousemove () {
+                var mouse = d3.mouse(svg3.node());
+                d3.select('#nicktool')
+                    .attr('transform','translate('+(mouse[0]+15)+', '+(mouse[1]+20)+')'); }
+        
+            function mouseout () {
+                var path=d3.select(this);
+                path.classed('highlighted',false);
+                d3.select('#nicktool').remove(); }
+
+
+        }
+            
+            }
+            
+            
+        
     
 
   

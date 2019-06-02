@@ -127,12 +127,63 @@ d3.json('karma_matrix.json', function(data) {
     var per_nick = helpers.bin_per_nick(data, function(d) {
         return d.to; });
 
-
-
     var time_binned = per_nick.map(function (nick_layer) {
         return {to: nick_layer[0].to,
                 values: d3.layout.histogram()
                                     .bins(time_bins)
                                     .value(function(d) { return time.parse(d.time);})(nick_layer)};
     });
+
+    var layers = d3.layout.stack()
+                    .order('inside-out')
+                    .offset('zero')
+                    .values(function(d) {return d.values;}) (time_binned);
+
+    var margins = {
+        top: 220,
+        right: 50,
+        bottom: 0,
+        left: 50
+    };
+
+    var x = d3.time.scale()
+                .domain(extent)
+                .range([margins.left, width3-margins.right]),
+        y = d3.scale.linear()
+                .domain([0, d3.max(layers, function(layer) {
+                    return d3.max(layer.values, function (d) {
+                        return d.y0+d.y;
+                    });
+                })])
+                .range([height3-margins.top,0]);
+
+    var offset = 100,
+        area = d3.svg.area()
+                .x(function(d) { return x(d.x)})
+                .y0(function(d) { return y(d.y0)+offset; })
+                .y1(function(d) { return y(d.y0 + d.y)+offset;});
+
+
+    var xAxis = d3.svg.axis()
+                .scale(x)
+                .tickFormat(d3.time.format('%b %Y'))
+                .ticks(d3.time.months,2)
+                .orient('bottom');
+
+    svg3.append('g')
+        .attr('transform', 'translate(0, '+(height3-100)+')')
+        .classed('axis', true)
+        .call(xAxis);
+
+
+
+    svg3.selectAll('path')
+        .data(layers)
+        .enter()
+        .append('path')
+        .attr('d', function(d) {return area(d.values); })
+        .style('fill', function(d,i) {return helpers.color(i);})
+        .call(helpers.tooltip(function(d) {return d.nick;}));
+
+        
 });
