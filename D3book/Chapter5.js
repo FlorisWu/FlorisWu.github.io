@@ -187,3 +187,16 @@ d3.json('karma_matrix.json', function(data) {
 
         
 });
+
+var width4 = 1024,
+height4 = 1024,
+svg4 = d3.select('#graph3')
+        .append('svg')
+        .attr({width: width4,
+        height: height4});
+
+d3.json('karma_matrix.json', function(data) { 
+
+
+
+});
