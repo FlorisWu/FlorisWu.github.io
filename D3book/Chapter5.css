@@ -32,3 +32,15 @@ path.highlighted {
 #nicktool rect {
     fill: white;
 }
+
+.chord path {
+    stroke: black;
+    stroke-width: 0.2;
+    opacity: 0.6;
+}
+
+line {
+    stroke: lightgrey;
+    stroke-width: 0.3;
+}
+

@@ -183,20 +183,164 @@ d3.json('karma_matrix.json', function(data) {
         .append('path')
         .attr('d', function(d) {return area(d.values); })
         .style('fill', function(d,i) {return helpers.color(i);})
-        .call(helpers.tooltip(function(d) {return d.nick;}));
+        .call(helpers.tooltip1(function(d) {return d.nick;}));
 
         
 });
 
 var width4 = 1024,
 height4 = 1024,
-svg4 = d3.select('#graph3')
+svg4 = d3.select('#graph4')
         .append('svg')
         .attr({width: width4,
         height: height4});
 
 d3.json('karma_matrix.json', function(data) { 
 
+    var uniques = helpers.uniques(data, function(d) { return d.from; }),
+        matrix = helpers.connection_matrix(data);
+
+    var innerRadius = Math.min(width4, height4)*0.3,
+        outerRadius = innerRadius*1.1;
+
+    var chord = d3.layout.chord()
+                    .padding(.05)
+                    .sortGroups(d3.descending)
+                    .sortSubgroups(d3.descending)
+                    .sortChords(d3.descending)
+                    .matrix(matrix);
+
+    var diagram = svg4.append('g')
+                    .attr('transform', 'translate('+width4/2+','+height4/2+')');
+
+    var group = diagram.selectAll('.group')
+                    .data(chord.groups)
+                    .enter()
+                    .append('g'),
+        arc = d3.svg.arc()
+                        .innerRadius(innerRadius)
+                        .outerRadius(outerRadius);
+        group.append('path')
+                .attr('d',arc)
+                .attr('fill', function(d) { return helpers.color(d.index);});
+
+        group.call(helpers.arc_labels(
+            function (d) { return uniques[d.index];},
+            function () {return outerRadius+10;} 
+        ));
+
+    diagram.append('g')
+            .classed('chord', true)
+            .selectAll('path')
+            .data(chord.chords)
+            .enter()
+            .append('path')
+            .attr('d', d3.svg.chord().radius(innerRadius))
+            .attr('fill', function(d,i) {return helpers.color(d.target.index);});
 
 
+
+});
+
+
+var width5 = 1024,
+height5 = 1024,
+svg5 = d3.select('#graph5')
+        .append('svg')
+        .attr({width: width5,
+        height: height5});
+
+d3.json('karma_matrix.json', function(data) { 
+
+    var nick_id = helpers.nick_id(data, function(d) { return d.from; }),
+        uniques = nick_id.domain(),
+        matrix = helpers.connection_matrix(data);
+
+    var nodes = uniques.map(function (nick) {
+        return {nick:nick};
+    })
+    var links = data.map(function(d) {
+        return {
+            source: nick_id(d.from),
+            target: nick_id(d.to),
+            count: matrix[nick_id(d.from)][nick_id(d.to)]
+        };
+    });
+
+    var force = d3.layout.force()
+                    .nodes(nodes)
+                    .links(links)
+                    .gravity(0.5)
+                    .size([width5,height5]);
+            
+        force.start();
+
+    var weight = d3.scale.linear()
+                    .domain(d3.extent(nodes.map(function(d) {return d.weight;})))
+                    .range([5,30])
+        distance = d3.scale.linear()
+                    .domain(d3.extent(d3.merge(matrix)))
+                    .range([300,100]),
+        given = d3.scale.linear()
+                    .range([2,35]);
+
+    force.linkDistance(function(d) {
+        return distance(d.count);
+    });
+
+    force.start();
+
+    var link = svg5.selectAll("line")
+                    .data(links)
+                    .enter()
+                    .append("line")
+                    .classed('link',true);
+
+    var node = svg5.selectAll("circle")
+                    .data(nodes)
+                    .enter()
+                    .append("circle")
+                    .classed('node', true)
+                    .attr({r: function(d) {return weight(d.weight);},
+                    fill: function(d) {return helpers.color(d.index); },
+                    class: function(d) {return 'nick_'+nick_id(d.nick);}})
+                    .on('mouseover', function(d) {highlight(d, uniques, given, matrix, nick_id); })
+                    .on('mouseout', function(d) { dehighlight(d, weight);});
+
+                    
+
+    node.call(helpers.tooltip2(function(d) { return d.nick;  }));
+    node.call(force.drag);
+
+
+    force.on("tick", function() {
+        link.attr("x1", function(d) {return d.source.x;})
+            .attr("y1", function(d) {return d.source.y;})
+            .attr("x2", function(d) {return d.target.x;})
+            .attr("y2", function(d) {return d.target.y;})
+        
+        node.attr("cx", function(d) {return d.x;})
+            .attr("cy", function(d) {return d.y;});
+    });
+
+    function highlight (d, uniques, given, matrix, nick_id) {
+        given.domain(d3.extent(matrix[nick_id(d.nick)]));
+
+        uniques.map(function(nick) {
+            var count = matrix[nick_id(d.nick)][nick_id(nick)];
+
+            if (nick != d.nick) {
+                d3.selectAll('circle.nick_' + nick_id(nick))
+                    .classed('unconnected', true)
+                    .transition()
+                    .attr('r', given(count));
+            }
+        });
+    }
+
+    function dehighlight (d,weight) {
+        d3.selectAll('.node')
+            .transition()
+            .attr('r', function(d) {return weight(d.weight); });
+    }
 });
