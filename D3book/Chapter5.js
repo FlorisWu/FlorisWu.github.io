@@ -344,3 +344,113 @@ d3.json('karma_matrix.json', function(data) {
             .attr('r', function(d) {return weight(d.weight); });
     }
 });
+
+
+var width6 = 1024,
+height6 = 1024,
+svg6 = d3.select('#graph6')
+        .append('svg')
+        .attr({width: width6,
+        height: height6});
+
+d3.json('karma_matrix.json', function(data) { 
+    helpers.fixate_colors(data);
+    var tree = helpers.make_tree(data,
+        function(d,nick) {
+            return d.to == nick;
+        },
+        function(d,nick) {return d.from == nick;},
+        function(d) {return d.to;},
+        function(d) {return d[0].to; });
+
+    var diagonal = d3.svg.diagonal.radial().projection(function(d) {
+        return [d.y,d.x/180 * Math.PI];});
+    
+    var layout = d3.layout.tree()
+                        .size([360, width6/2-120]);
+            var nodes = layout.nodes(tree),
+                links = layout.links(nodes);
+    var chart = svg6.append('g')
+                        .attr('transform','translate('+width6/2+','+height6/2+')');
+
+    var link = chart.selectAll(".link")
+                    .data(links)
+                    .enter()
+                    .append("path")
+                    .attr("class", "link")
+                    .attr("d", diagonal);
+
+
+    var node = chart.selectAll(".node")
+                .data(nodes)
+                .enter().append("g")
+                .attr("class","node")
+                .attr("transform", function(d) {return "rotate("+(d.x-90)+")translate("+d.y+")";});
+
+    node.append("circle")
+            .attr("r",4.5)
+            .attr("fill",function(d) {return helpers.color(d.nick);});
+
+    node.append("text")
+        .attr("dy", ".31em")
+        .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+        .attr("transform", function(d) {return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)";})
+        .text(function(d) {return d.nick;})
+        .style('font-size', function(d) {return d.depth > 1 ? '0.8em' : '1.1em';}); 
+
+
+});
+
+var width7 = 1024,
+height7 = 2800,
+svg7 = d3.select('#graph7')
+        .append('svg')
+        .attr({width: width7,
+        height: height7});
+
+d3.json('karma_matrix.json', function(data) { 
+    var tree = helpers.make_tree(data,
+        function (d, nick) { return d.to == nick; },
+        function (d, nick) { return d.from == nick; },
+        function (d) { return d.to; },
+        function (d) { return d[0].to; });
+
+    helpers.fixate_colors(data);
+
+    var diagonal = d3.svg.diagonal()
+        .projection(function (d) { return [d.y, d.x]; });
+
+    var cluster = d3.layout.cluster()
+        .size([height7, width7-150])
+        .sort(function (a, b) { return d3.descending(a.count, b.count); });
+
+    var nodes = cluster.nodes(tree),
+        links = cluster.links(nodes);
+
+    svg7.selectAll('.link')
+        .data(links)
+        .enter()
+        .append('path')
+        .classed('link', true)
+        .attr('d', diagonal);
+
+    var node = svg7.selectAll('.node')
+                    .data(nodes)
+                    .enter()
+                    .append('g')
+                    .classed('node', true)
+                    .attr('transform', function (d) { return 'translate('+d.y+', '+d.x+')'; });
+
+    node.append('circle')
+                .attr({r: 5,
+                            fill: function (d) { return helpers.color(d.nick); }});
+
+    node.append('text')
+            .text(function (d) { return d.nick; })
+            //.attr("dx", function(d) { return d.children.length ? -8 : 8; })
+            .attr("dy", function (d) { return d.depth > 1 ? 3 : 5; })
+            //.attr("text-anchor", function(d) { return d.children.length ? "end" : "start"; })
+            .style('font-size', function (d) { return d.depth > 1 ? '0.8em' : '1.1em'; });
+
+
+});

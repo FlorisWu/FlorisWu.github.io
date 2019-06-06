@@ -196,12 +196,28 @@ tooltip2: function (text) {
     },
 // begin with uniques and nick_id; then create a zero matrix, and loop through the data 
 // to increase connection counts in cells
-            
-            
-            
-            
-        
-    
 
+make_tree: function (data, filter1, filter2, nick1, nick2) {
+    var tree = {nick: 'karma',
+                children:[]};
+    var uniques = helpers.uniques(data, function(d) {
+        return d.from;
+    });
+    tree.children = uniques.map( function(nick) {
+        var my_karma = data.filter(function(d) {
+            return filter1(d,nick);}).length,
+        given_to = helpers.bin_per_nick(data.filter(function(d) {return filter2(d,nick);}), nick1);
+        return {nick:nick,
+                count: my_karma,
+                children: given_to.map(function(d){
+                    return {
+                        nick:nick2(d),
+                        count: d.length,
+                        children:[]
+                    };
+                })};
+    });
+    return tree;
+},
   
     };

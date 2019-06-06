@@ -44,3 +44,7 @@ line {
     stroke-width: 0.3;
 }
 
+.link {
+    fill:none;
+    stroke: lightgrey;
+}
