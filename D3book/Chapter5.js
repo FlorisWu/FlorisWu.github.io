@@ -454,3 +454,95 @@ d3.json('karma_matrix.json', function(data) {
 
 
 });
+
+var width8 = 1024,
+height8 = 2800,
+svg8 = d3.select('#graph8')
+        .append('svg')
+        .attr({width: width8,
+        height: height8});
+
+d3.json('karma_matrix.json', function(data) { 
+    var tree = helpers.make_tree(data, function(d,nick) { return d.to == nick; },
+    function(d,nick) {return d.to == nick;},
+    function(d,nick) {return d.from;},
+    function(d,nick) {return d[0].from;}
+    );
+
+    var partition = d3.layout.partition()
+                        .value(function(d) {return d.count;})
+                        .sort(function(a,b) {
+                            return d3.descending(a.count,b.count);
+                        })
+                        .size([2*Math.PI, 300]);
+
+    var nodes = partition.nodes(tree);
+
+    var arc = d3.svg.arc()
+                    .innerRadius(function(d) {return d.y; })
+                    .outerRadius(function(d) {return d.depth ? d.y+d.dy/d.depth : 0 ; });
+
+        nodes = nodes.map(function(d) {
+            d.startAngle = d.x;
+            d.endAngle = d.x+d.dx;
+            return d;
+        });
+
+        nodes = nodes.filter(function(d) {return d.depth;})
+
+
+    var chart = svg8.append('g')
+                    .attr('transform', 'translate('+width8/2+' ,'+height8/2+')');
+                
+    var node = chart.selectAll('g')
+                    .data(nodes)
+                    .enter()
+                    .append('g');
+
+    node.append('path')
+            .attr({d: arc,
+                    fill: function(d) {return helpers.color(d.nick);}});
+
+    node.filter(function(d) {return d.depth > 1 && d.count > 10; })
+        .call(helpers.arc_labels(function(d) {return d.nick;},
+        arc.outerRadius()));
+
+    node.call(helpers.tooltip3(function(d) {return d.nick;}));
+
+
+});
+
+var width9 = 1024,
+height9 = 2800,
+svg9 = d3.select('#graph9')
+        .append('svg')
+        .attr({width: width9,
+        height: height9});
+
+d3.json('karma_matrix.json', function(data) { 
+    var tree = helpers.make_tree(data,
+        function (d, nick) { return d.to == nick; },
+        function (d, nick) { return d.to == nick; },
+        function (d) { return d.from; },
+        function (d) { return d[0].from; });
+        helpers.fixate_colors(data);
+
+        var pack = d3.layout.pack()
+        .padding(5)
+        .size([width9/1.5, height9/1.5])
+        .value(function (d) { return d.count; });
+
+        var nodes = pack.nodes(tree);
+
+        svg9.append('g')
+            .attr('transform', 'translate(100, 100)')
+            .selectAll('g')
+            .data(nodes)
+            .enter()
+            .append('circle')
+            .attr({r: function (d) { return d.r; },
+                    cx: function (d) { return d.x; },
+                    cy: function (d) { return d.y; }})
+            .attr('fill', function (d) { return helpers.color(d.nick); })
+            .call(helpers.tooltip4(function (d) { return d.nick; }));
+});

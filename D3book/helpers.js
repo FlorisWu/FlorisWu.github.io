@@ -219,5 +219,113 @@ make_tree: function (data, filter1, filter2, nick1, nick2) {
     });
     return tree;
 },
+
+tooltip3: function (text) {
+    return function (selection) {
+
+        selection.on('mouseover.tooltip', mouseover)
+        .on('mousemove.tooltip', mousemove)
+        .on('mouseout.tooltip', mouseout);
+
+    
+        
+
+        function mouseover(d) {
+    
+            var path = d3.select(this);
+            path.classed('highlighted',true);
+
+            var mouse = d3.mouse(svg8.node());
+            var tool = svg8.append('g')
+                            .attr({'id': "nicktool",
+                        transform: 'translate('+(mouse[0]+5)+', '+(mouse[1]+10)+')'});
+        
+            var textNode = tool.append('text')
+                                .text(text(d)).node();
+
+                
+        
+                tool.append('rect')
+                    .attr({height: textNode.getBBox().height,
+                    width: textNode.getBBox().width,
+                transform: 'translate(0,-16)'});
+
+        
+                tool.select('text')
+                        .remove();
+        
+                tool.append('text')
+                        .text(d.nick);  }
+    
+
+        function mousemove () {
+            var mouse = d3.mouse(svg8.node());
+            d3.select('#nicktool')
+                .attr('transform','translate('+(mouse[0]+15)+', '+(mouse[1]+20)+')'); }
+    
+        function mouseout () {
+            var path=d3.select(this);
+            path.classed('highlighted',false);
+            d3.select('#nicktool').remove(); }
+
+
+    
+        }
+    },
+
+tooltip4: function (text) {
+    return function (selection) {
+
+        selection.on('mouseover.tooltip', mouseover)
+        .on('mousemove.tooltip', mousemove)
+        .on('mouseout.tooltip', mouseout);
+
+    
+        
+
+        function mouseover(d) {
+    
+            var path = d3.select(this);
+            path.classed('highlighted',true);
+
+            var mouse = d3.mouse(svg9.node());
+            var tool = svg9.append('g')
+                            .attr({'id': "nicktool",
+                        transform: 'translate('+(mouse[0]+5)+', '+(mouse[1]+10)+')'});
+        
+            var textNode = tool.append('text')
+                                .text(text(d)).node();
+
+                
+        
+                tool.append('rect')
+                    .attr({height: textNode.getBBox().height,
+                    width: textNode.getBBox().width,
+                transform: 'translate(0,-16)'});
+
+        
+                tool.select('text')
+                        .remove();
+        
+                tool.append('text')
+                        .text(d.nick);  }
+    
+
+        function mousemove () {
+            var mouse = d3.mouse(svg9.node());
+            d3.select('#nicktool')
+                .attr('transform','translate('+(mouse[0]+15)+', '+(mouse[1]+20)+')'); }
+    
+        function mouseout () {
+            var path=d3.select(this);
+            path.classed('highlighted',false);
+            d3.select('#nicktool').remove(); }
+
+
+    
+        }
+    },
   
-    };
+};
+    
+
