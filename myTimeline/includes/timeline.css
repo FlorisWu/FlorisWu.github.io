@@ -1,0 +1,116 @@
+/*  CSS Document                             */
+
+body {
+    margin: 0; padding: 0; font-size: 16px; font-family: Arial;
+}
+
+.timeline {position: relative; margin: 30px 0px 20px 0px;}
+
+.timeline h1 {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    font-size: 1.2em;
+    z-index: 1;
+    text-transform: uppercase;
+    color: #fff;
+    padding-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.timeline .panel_container {
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0px 0px 0px;
+    width: 100%;
+    height: 300px;
+	background: #26016a; /* Old browsers */
+	background: -moz-linear-gradient(left,  #26016a 44%, #d14001 47%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(45%,#26016a), color-stop(50%,#d14001)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #26016a 45%,#d14001 50%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #26016a 45%,#d14001 50%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #26016a 45%,#d14001 50%); /* IE10+ */
+	background: linear-gradient(to right,  #26016a 45%,#d14001 50%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26016a', endColorstr='#d14001',GradientType=1 ); /* IE6-9 */
+}
+
+
+.timeline .background_slider {
+    position: absolute; width: inherit; height: inherit;
+}
+
+.timeline .background_slider img { position: absolute; top: 0px; left: 0px;}
+.timeline .panel_slider {width: 100%; position: absolute;}
+.timeline .panel {width: 340px; position: absolute;}
+
+.timeline .panel_content { padding: 75px 10px 0px 40px; position: relative;}
+.timeline .panel_content h2 { font-size: 1em; color: #fff; margin: 0px 0px 8px 0px;}
+
+.timeline .panel_content p {margin: 0px 0px 1em 0px; position: relative; color: rgba(255,255,255,.55);}
+
+.timeline .panel_content .label {
+    position: absolute;
+    top: 12px; right: 0px;
+    font-size: 4em;
+    color: rgba(255,255,255,.2);
+    text-align: right;
+    font-family: Georgia;
+}
+
+.timeline nav { position: absolute; bottom: 0px; left: 0px; text-align: center; width: inherit;}
+.timeline nav a {
+    color: #fff;
+    font-size: .9em;
+    display: inline-block;
+    padding: 5px 10px;
+    border-color: #fff;
+    border-style: solid;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 0px;
+    border-top-width: 8px;
+    text-decoration: none;
+}
+
+.timeline nav a:first-child {border-left-width: 8px;}
+.timeline nav a:last-child {border-right-width: 8px;}
+.timeline nav a.selected { background-color: rgba(255,255,255,.55);}
+
+.timeline .panel img.arpanet {margin:0px 0px 10px 0px;}
+.timeline .panel img.tcp { float: left; margin:10px 20px 0px 0px;}
+.timeline .panel img.www { float: left; margin: 10px 15px 0px 0px;}
+.timeline .panel img.voip { float: right; margin: 10px 0px 0px 10px; }
+.timelne .panel img.telecommunications_usage {float: right; margin: 10px 30px 0px 10px;}
+
+.clear_both { clear:both; }
+
+@media screen and (max-width: 500px) { 
+    .timeline { margin: 0px; background: #81194c url(../images/backgound_small.jpg) no-repeat center 0px;}
+    .timeline h1 {text-align: left; padding: 10px 10px 10px 20px; }
+    .timeline .panel_container {height: auto; background: none; filter: none; margin: 0px;}
+    .timeline .panel_slider { position: static; height: auto;}
+    .timeline .panel {
+        width: auto;
+        height: auto;
+        position: static;
+        border-top: 1px solid rgba(255,255,255,.3);
+        padding-bottom: 20px;
+    }
+    .timeline nav {display:none;}
+    .timeline .background_slider {display:none; }
+    .timeline .panel:first-child {padding-top: 40px;}
+    .timeline .panel_content {padding-top: 60px; }
+    .timeline .panel_content .label {top: -10px; right:10px;}
+    .timeline .panel img.www {margin:0px 25px 0px 0px;}
+    .timeline .panel img.voip {margin:10px 40px 0px 20px;}
+    .timeline .panel img.telecommunications_usage {float: left; margin: 10px 15px 0px 0px;}
+}
+
+
+
+
+

@@ -528,9 +528,9 @@ d3.json('karma_matrix.json', function(data) {
         helpers.fixate_colors(data);
 
         var pack = d3.layout.pack()
-        .padding(5)
-        .size([width9/1.5, height9/1.5])
-        .value(function (d) { return d.count; });
+            .padding(5)
+            .size([width9/1.5, height9/1.5])
+            .value(function (d) { return d.count; }); 
 
         var nodes = pack.nodes(tree);
 
