@@ -36,6 +36,8 @@ function adjustLayout() {
     activateNavigation();
 }
 
+
+
 function activateNavigation() {
 
     $('.timeline nav a').on('click', function() {
@@ -49,6 +51,8 @@ function activateNavigation() {
         var newPosition = ((currentPanel*panelWidth)* -1) + timelineOffset;
 
         $('.panel_slider').animate({left:newPosition+'px'}, 1000);
+     
+        
 
         var backgroundWidth = $('.timeline .background_slider img').width();
 

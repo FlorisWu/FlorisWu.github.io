@@ -21,16 +21,36 @@
                         
 
 		<div class="timeline">
+
 			<div class="panel_container">
-				<h1>The history of Gerrymandering</h1>
+
+                <h1>The history of Gerrymandering</h1>
+                
+                <center><p id="paragraph1">Gerrymandering is a practice used to establish a political advantage for a particular political party or group by manipulating district boundaries. It has been used many times throughout history by those in power in attempts to keep power. Below is a timeline that shows a history of gerrymandering in the United States.</p></center>
+                
+                
 				
 				<div class="panel_slider">
 
+                       
+
+
+
             
             <!-- panel -->
+
+            
+            <!--<svg height="80px" width="5000px">
+                    <line x1="50px" y1="78px" x2="5000px" y2="78px" stroke="black" stroke-width="2px" />
+                </svg>-->
+
+
 			<div class="panel">
                     <div class="panel_content">
-                            <button id="myBtn">Patrick Henry and Anti-Federalist</button>
+                        
+                            <button id="myBtn">Patrick Henry and Anti-Federalist - 1788</button>
+
+                            
 
                             <!-- The Modal -->
                             <div id="myModal" class="modal">
@@ -38,7 +58,7 @@
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span class="close">&times;</span>
-                                <p>In 1788 Patrick Henry and Anti-Federalist were in control of the Virginia House of Delegates. They attempted to keep James Madison out of the U.S. House of Representatives by drawing the boundaries of Virginia's 5th Congressional District that favored James Monroe, however they were unsuccessful.</p>
+                                <p>Patrick Henry and Anti-Federalists were in control of the Virginia House of Delegates. They attempted to keep James Madison out of the U.S. House of Representatives by drawing the boundaries of Virginia's 5th Congressional District in favor of James Monroe, however, they were unsuccessful, James Madison was elected.</p>
                             </div>
                             <div class="label">1788</div>
                     </div>
@@ -81,21 +101,78 @@
                 </div>
            </div>
 
+           
+
+            <!-- panel -->
+            
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn0">Article I - 1788</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal0" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content0">
+                                <span id="close0">&times;</span>
+                                <p>Article I of the Constitution established that a census shall be taken of the United States every 10 years and representatives for each state will be assigned based on their population. The House of Representatives has 435 seats which shall be distributed proportional to each state based on their population. </p>
+                            </div>
+                            <div class="label">1788</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal0 = document.getElementById("myModal0");
+                            
+                            // Get the button that opens the modal
+                            var btn0 = document.getElementById("myBtn0");
+
+                            // Get the <span> element that closes the modal
+                            var span0 = document.getElementById("close0");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn0.onclick = function() {
+                              modal0.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span0.onclick = function() {
+                              modal0.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal0) {
+                                modal0.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
 
 			
 
         <!-- panel -->
 			<div class="panel">
                     <div class="panel_content">
-                            <button id="myBtn1">Elbridge Gerry</button>
+                            <button id="myBtn1">Elbridge Gerry - 1812</button>
 
                             <!-- The Modal -->
                             <div id="myModal1" class="modal">
                 
                             <!-- Modal content -->
                             <div id="modal-content1">
-                                <span id="close">&times;</span>
-                                <p>Elbridge Gerry was Governor of Massachusetts in 1812. He signed a bill that redistricted Massachuseets to favor the Democratic-Republican Party. When mapped one of the districts of Boston was thought to resemble a mythological salamander, thus the term gerrymandering was coined and printed for the first time in the Boston Gazette.</p>
+                                <span id="close1">&times;</span>
+                                <p>Elbridge Gerry was Governor of Massachusetts in 1812. He signed a bill that redistricted Massachusetts to favor the Democratic-Republican Party. Under the new districting plan,one of Boston’s districts was thought to resemble a mythological salamander. Thus the term “gerrymandering” was coined and printed for the first time in the Boston Gazette.</p>
                             </div>
                             <div class="label">1812</div>
                     </div>
@@ -111,7 +188,7 @@
                             var btn1 = document.getElementById("myBtn1");
 
                             // Get the <span> element that closes the modal
-                            var span1 = document.getElementsByClassName("close");
+                            var span1 = document.getElementById("close1");
                             
                             // When the user clicks the button, open the modal 
                             btn1.onclick = function() {
@@ -139,169 +216,307 @@
            </div>
 
             
+           <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn2">14th Amendment - 1868</button>
 
-			<!-- panel -->
+                            <!-- The Modal -->
+                            <div id="myModal2" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content2">
+                                <span id="close2">&times;</span>
+                                <p>The 14th amendment has been cited many times in gerrymandering cases. The 14th amendment guarantees everyone “equal protection of the laws.”</p>
+                            </div>
+                            <div class="label">1868 </div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal2 = document.getElementById("myModal2");
+                            
+                            // Get the button that opens the modal
+                            var btn2 = document.getElementById("myBtn2");
+
+                            // Get the <span> element that closes the modal
+                            var span2 = document.getElementById("close2");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn2.onclick = function() {
+                              modal2.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span2.onclick = function() {
+                              modal2.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal2) {
+                                modal2.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+           <!-- panel -->
 			<div class="panel">
-				<div class="panel_content">
-					<div class="label">1896</div>
-					<h2>Plessy v. Ferguson</h2>
-					<p><img class="tcp_ip" src="images/tcp_ip.png" alt="TCP/IP"> Upheld the constitutionality of racial segregation, separate but equal is equal. </p>
-					<div class="clear_both"></div>
-				</div>
-			</div>
-			<!-- panel -->
+                    <div class="panel_content">
+                            <button id="myBtn4">Colegrove v. Green - 1946</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal4" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content4">
+                                <span id="close4">&times;</span>
+                                <p>Three Illinois voters claimed the state’s congressional districts lacked compactness and equal population, which resulted in unfair apportionment, a violation of the Constitution. The case was dismissed on the grounds that the Constitution placed no requirements on district plans regarding compactness, contiguity or equal population. The court stated the political nature of apportionment precluded judicial intervention, the solution was to elect legislatures that would apportion properly. </p>
+                            </div>
+                            <div class="label">1946</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal4 = document.getElementById("myModal4");
+                            
+                            // Get the button that opens the modal
+                            var btn4 = document.getElementById("myBtn4");
+
+                            // Get the <span> element that closes the modal
+                            var span4 = document.getElementById("close4");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn4.onclick = function() {
+                              modal4.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span4.onclick = function() {
+                              modal4.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal4) {
+                                modal4.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+        
+        
+
+            <!-- panel -->
 			<div class="panel">
-				<div class="panel_content">
-					<div class="label">1954</div>
-					<img class="www" src="images/www.png" alt="World Wide Web" />
-					<h2>Brown v. Board of Education</h2>
-					<p>Overturned Plessy v. Ferguson, separate but equal is not equal. Resulted in schools being desegregated. </p>
-					<div class="clear_both"></div>
-				</div>
-			</div>
-			<!-- panel -->
-			<div class="panel">
-				<div class="panel_content">
-					<h2>Colegrove v. Green</h2>
-					<p>Three Illinois voters claimed states congressional districts lacked compactness and equal population, a violation of the constitution. The case was dismissed based on the grounds that the U.S. constitution placed no requirements on district plans regarding compactness, contiguity or equal population.<img class="telecommunications_usage" src="images/telecommunications_usage.png" alt="Telecommunications Usage"></p>
-					<div class="label">1946</div>
-					<div class="clear_both"></div>
-				</div>
-			</div>
-			<!-- panel -->
-			<div class="panel">
-				<div class="panel_content">
-					<h2>Baker v. Carr</h2>
-					<p>In Baker v. Carr a claim that Tennessee had failed to reappoint legislative districts in accordance with the state constitution. The district court dismissed the case, however, the Supreme Court reversed the ruling finding that legislature appoint was a justiciable issue not a political question. The court made it clear that any state who failed to apportion its districts in equal fashion is in violation of the Equal Protection Clause. <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-					<div class="label">1962</div>
-					<div class="clear_both"></div>
-				</div>
-            </div>
+                    <div class="panel_content">
+                            <button id="myBtn5">Baker v. Carr - 1962</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal5" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content5">
+                                <span id="close5">&times;</span>
+                                <p>Plaintiffs argued that Tennessee had failed to reapportion its legislative districts in accordance with the state constitution. The Supreme Court found that legislative apportionment was a justiciable issue. The court made it clear that any state who failed to apportion their districts in an equal fashion is in violation of the Equal Protection Clause2. 1) Justiciable: Refers to the types of matters a court can make a formal judgement or decision on. 2) Equal Protection Clause: Refers to the idea that the governmental body cannot deny people equal protection of its governing laws. The governing body must treat every individual in the same manner as others in similar circumstances and conditions.</p>
+                            </div>
+                            <div class="label">1962</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal5 = document.getElementById("myModal5");
+                            
+                            // Get the button that opens the modal
+                            var btn5 = document.getElementById("myBtn5");
+
+                            // Get the <span> element that closes the modal
+                            var span5 = document.getElementById("close5");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn5.onclick = function() {
+                              modal5.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span5.onclick = function() {
+                              modal5.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal5) {
+                                modal5.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+
             
-            <!-- panel -->
+         
+
+                <!-- panel -->
 			<div class="panel">
                     <div class="panel_content">
-                        <h2>Wesberry v. Sanders</h2>
-                        <p>James P. Wesberry brought the case against Georgia Governor Carl Sanders. Wesberry lived in a district whose population was two to three times larger than other districts within Georgia, which diluted the vote of the people within the district a violation of the U.S. Constitution. The court ruled in favor of Wesberry, districts need to be as equal in population as possible in order for everyone's vote to have the same weight. <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1964</div>
-                        <div class="clear_both"></div>
+                            <button id="myBtn6">Wesberry v. Sanders- 1964</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal6" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content6">
+                                <span id="close6">&times;</span>
+                                <p>James Wesberry brought a case against Georgia Governor Carl Sanders. Wesberry lived in a district whose population was two to three times larger than other districts in Georgia, which resulted in vote dilution. Vote dilution is a violation of the U.S. Constitution. The court ruled in favor of Wesberry, districts need to be as equal in population as possible in order for everyone's vote to be as equal in weight as possible.</p>
+                            </div>
+                            <div class="label">1964</div>
                     </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal6 = document.getElementById("myModal6");
+                            
+                            // Get the button that opens the modal
+                            var btn6 = document.getElementById("myBtn6");
+
+                            // Get the <span> element that closes the modal
+                            var span6 = document.getElementById("close6");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn6.onclick = function() {
+                              modal6.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span6.onclick = function() {
+                              modal6.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal6) {
+                                modal6.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
                 </div>
+           </div>
+
+
+
+
 
             <!-- panel -->
 			<div class="panel">
                     <div class="panel_content">
-                        <h2>Voting Rights Act</h2>
-                        <p>The Voting Rights Act of 1965 was signed into law by Present Lyndon B. Johnson. The goal of the Voting Rights Act was to give minority groups an equal opportunity to vote. It banned literacy tests and provided the federal oversight of voter registration in areas where less than half the non-white population was registered to vote. It also banned state redistricting that dilutes the vote of minority groups. It allowed the U.S. attorney general to investigate the use of poll taxes in state and local elections. <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1965</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
+                            <button id="myBtn7">Voting Rights Act - 1965</button>
 
-            <!-- panel -->
+                            <!-- The Modal -->
+                            <div id="myModal7" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content7">
+                                <span id="close7">&times;</span>
+                                <p>The Voting Rights Act of 1965 was signed into law by Present Lyndon B. Johnson. The goal of the Voting Rights Act was to give minority groups an equal opportunity to vote. It banned literacy tests and provided the federal oversight of voter registration in areas where less than half the non-white population was registered to vote. It also banned state redistricting that dilutes the vote of minority groups. It allowed the U.S. attorney general to investigate the use of poll taxes in state and local elections. </p>
+                            </div>
+                            <div class="label">1965</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal7 = document.getElementById("myModal7");
+                            
+                            // Get the button that opens the modal
+                            var btn7 = document.getElementById("myBtn7");
+
+                            // Get the <span> element that closes the modal
+                            var span7 = document.getElementById("close7");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn7.onclick = function() {
+                              modal7.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span7.onclick = function() {
+                              modal7.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal7) {
+                                modal7.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+        
+
+                
+             <!-- panel -->
 			<div class="panel">
                     <div class="panel_content">
-                        <h2>Chicago School Boycott</h2>
-                        <p>More than 100,000 African-American students stayed home from school in protest of the renewed contract for Dr. Benjamin Willis, the white school superintendent. The boycott marked the beginning of the Chicago Freedom Movement (1965-1966) that lead to the arrival of Dr. Martin Luther King Jr. in Chicago to lead the struggle of equal opportunities in education and housing. <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1965</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Chicago School Desegregation</h2>
-                        <p>Chicago Board of Education announced a preliminary plan to desegregate schools. The plan was denounced by Mayor Jane M. Byrne. The proposal called for the bussing of students and pairing of neighboring schools with differing demographic compositions in order to desegregate them. However, most white students had transferred to private school before the desegregation process began, meaning public schools in Chicago were mostly black.  <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1981</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Thornburg v. Gingles</h2>
-                        <p>North Carolina passed a new district plan for the state’s Senate and House of Representatives. African Americans in North Carolina claimed that the new plan contained 7 new districts in which they would not be able to elect a representative of their choice; a violation of section 2 of the Voting Rights Act. The court found that five of the districts diluted the vote of African American Voters a violation of the Voting Rights Act. The court also established three criteria for proving racial vote dilution under the Voting Rights Act.   <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1986</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Davis v. Bandemer</h2>
-                        <p>The case was brought by a group of Indiana Democrats who claimed that the appointment of Indiana State Legislatures diluted the voice of democrats voters in key districts, which is a violation of the Equal Protection Clause of the 14th Amendment of the Constitution. The Supreme Court rules Indiana's district plan was not illegally gerrymandered. The court maintained partisan gerrymandering cases are justiciable under the Equal Protection Clause.  <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1986</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Miller v. Johnson</h2>
-                        <p>In Georgia 27% of the population was black, but they only had one congressional seat. The black population was entitled to another congressional seat. The congressional districts of Georgia had been drawn in such a way that the black population was only able to elect one black representative, which is racial gerrymandering. The court ruled racial gerrymandering is a violation of the Equal Protection Clause. <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">1995</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Vieth v. Jubelirer</h2>
-                        <p>The case was brought by a group of Pennsylvania Democrats who claimed the state legislature, which was controlled by Republicans at the time of redistricting, had drawn a map that constituted an illegal partisan gerrymander. The court issued a split decision with no majority, as a result no precedent was established regarding partisan gerrymandering cases.<br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">2004</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>REDMAP</h2>
-                        <p>In 2010 Republicans formulated a plan called REDMAP (Redistricting Majority Project). REDMAP looked for states that had a possibility of changed from blue to red states and redistricted them. In the 2010 midterm elections republicans gained 6 Senate seats and 63 House seats, making them the majority of the House of Representatives and gaining control over more state legislators than the Democrats had. The Republicans then started to work on redistricting wherever they could, this lead to a 23 seat gain in the House for Republicans in 2012 elections. <br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">2010</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Evenwell v. Abbott</h2>
-                        <p>The issue was the constitutionality of Texas legislative districts. The plaintiffs argued that district populations should only take into account the number or registered or eligible voters residing within those districts. The plantiffs argued that taking into account the total population in districts with a small population of non-eligible voters dilutes the voting power of other citizens in residing within the district. The court ruled that state or localities can use total population when redistricting.<br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">2016</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                        <h2>Rucho v. Common Cause</h2>
-                        <p>The court had ordered North Carolina to redraw some of its districts because it had been found that their districts map favored Republicans. The new map was redrawn by a Republican mapmaker who had instructions to ensure there was a 10-3 Republican majority in the congressional election. The map packed and cracked democratic voters in order to dilute their vote. North Caroline had gerrymandered its map in such a way that favored the Republican party. The Supreme Court ruled that partisan gerrymandering is nonjusticiable.<br/><img class="population_usage" src="images/population_usage.png" alt="Population Usage" /></p>
-                        <div class="label">2016</div>
-                        <div class="clear_both"></div>
-                    </div>
-                </div>
-
-            <!-- panel -->
-			<div class="panel">
-                    <div class="panel_content">
-                            <button id="myBtn10">Rucho v. Common Cause</button>
+                            <button id="myBtn10">Thornburg v. Gingles - 1986</button>
 
                             <!-- The Modal -->
                             <div id="myModal10" class="modal">
                 
                             <!-- Modal content -->
-                            <div class="modal-content">
+                            <div id="modal-content10">
                                 <span id="close10">&times;</span>
-                                <p>The court had ordered North Carolina to redraw some of its districts because it had been found that their districts map favored Republicans. The new map was redrawn by a Republican mapmaker who had instructions to ensure there was a 10-3 Republican majority in the congressional election. The map packed and cracked democratic voters in order to dilute their vote. North Caroline had gerrymandered its map in such a way that favored the Republican party. The Supreme Court ruled that partisan gerrymandering is nonjusticiable.</p>
+                                <p>North Carolina passed a new districting plan for the state’s Senate and House of Representatives. African Americans in North Carolina claimed that the new plan contained 7 new districts in which they would not be able to elect a representative of their choice; a violation of section 2 of the Voting Rights Act. The court found that five of the districts diluted the vote of African American Voters a violation of the Voting Rights Act. The court also established three criteria for proving racial vote dilution under the Voting Rights Act.  </p>
                             </div>
-                            <div class="label">2016</div>
+                            <div class="label">1986</div>
                     </div>
                     
                     <script>
@@ -334,6 +549,356 @@
                             window.addEventListener("click", function(event) {
                               if (event.target == modal10) {
                                 modal10.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+
+        
+
+
+            <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn11">Davis v. Bandemer - 1986</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal11" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content11">
+                                <span id="close11">&times;</span>
+                                <p>The case was brought by a group of Indiana Democrats who claimed that the appointment of Indiana State Legislatures diluted the voice of democrat voters in key districts, which is a violation of the Equal Protection Clause of the 14th Amendment of the Constitution. The Supreme Court ruled Indiana's district plan was not illegally gerrymandered. The court maintained partisan gerrymandering cases are justiciable under the Equal Protection Clause.</p>
+                            </div>
+                            <div class="label">1986</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal11 = document.getElementById("myModal11");
+                            
+                            // Get the button that opens the modal
+                            var btn11 = document.getElementById("myBtn11");
+
+                            // Get the <span> element that closes the modal
+                            var span11 = document.getElementById("close11");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn11.onclick = function() {
+                              modal11.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span11.onclick = function() {
+                              modal11.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal11) {
+                                modal11.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+
+                 <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn12">Miller v. Johnson - 1995</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal12" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content12">
+                                <span id="close12">&times;</span>
+                                <p>The African American population of Georgia made up a total of 27% of its overall population, however, they only had one congressional seat to represent their community values. According to the 1990 census, Georgia’s African American population was entitled to another congressional seat. Georgia's congressional districts had been drawn in such a way that the African American population was only able to elect one African American representative, which is racial gerrymandering. The court ruled racial gerrymandering is a violation of the Equal Protection Clause. </p>
+                            </div>
+                            <div class="label">1995</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal12 = document.getElementById("myModal12");
+                            
+                            // Get the button that opens the modal
+                            var btn12 = document.getElementById("myBtn12");
+
+                            // Get the <span> element that closes the modal
+                            var span12 = document.getElementById("close12");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn12.onclick = function() {
+                              modal12.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span12.onclick = function() {
+                              modal12.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal12) {
+                                modal12.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+            
+
+
+           
+
+
+            <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn13">Vieth v. Jubelirer - 2004</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal13" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content13">
+                                <span id="close13">&times;</span>
+                                <p>Pennsylvania Democrats brought this case to court. They claimed the state legislature, which was controlled by Republicans at the time of redistricting, had drawn a map that constituted an illegal partisan gerrymander. The court issued a split decision with no majority. As a result, no precedent was established regarding partisan gerrymandering cases.</p>
+                            </div>
+                            <div class="label">2004</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal13 = document.getElementById("myModal13");
+                            
+                            // Get the button that opens the modal
+                            var btn13 = document.getElementById("myBtn13");
+
+                            // Get the <span> element that closes the modal
+                            var span13 = document.getElementById("close13");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn13.onclick = function() {
+                              modal13.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span13.onclick = function() {
+                              modal13.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal13) {
+                                modal13.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+            <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn14">REDMAP - 2010</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal14" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content14">
+                                <span id="close14">&times;</span>
+                                <p>In 2010 Republicans formulated a plan called REDMAP (Redistricting Majority Project). REDMAP looked for states that had a possibility of changing from blue to red states and redistricted them. In the 2010 midterm elections, Republicans gained 6 Senate seats and 63 House seats, making them the majority of the House of Representatives and gained control over more state legislators than the Democrats had. The Republicans then started to work on redistricting wherever they could, this led to a 23 seat gain in the House for Republicans in 2012 elections.</p>
+                            </div>
+                            <div class="label">2010</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal14 = document.getElementById("myModal14");
+                            
+                            // Get the button that opens the modal
+                            var btn14 = document.getElementById("myBtn14");
+
+                            // Get the <span> element that closes the modal
+                            var span14 = document.getElementById("close14");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn14.onclick = function() {
+                              modal14.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span14.onclick = function() {
+                              modal14.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal14) {
+                                modal14.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+
+
+                <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn15">Evenwell v. Abbott - 2016</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal15" class="modal">
+                
+                            <!-- Modal content -->
+                            <div id="modal-content15">
+                                <span id="close15">&times;</span>
+                                <p>The issue, in this case, was the constitutionality of Texas legislative districts. The plaintiffs argued that district populations should only take into account the number of registered or eligible voters residing within those districts instead of the total population. They also argued that taking into account the total population in districts with a small population of non-eligible voters dilutes the voting power of other citizens residing within the district. The court ruled that state or localities can use total population when redistricting.</p>
+                            </div>
+                            <div class="label">2016</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal15 = document.getElementById("myModal15");
+                            
+                            // Get the button that opens the modal
+                            var btn15 = document.getElementById("myBtn15");
+
+                            // Get the <span> element that closes the modal
+                            var span15 = document.getElementById("close15");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn15.onclick = function() {
+                              modal15.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span15.onclick = function() {
+                              modal15.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal15) {
+                                modal15.style.display = "none";
+                              }
+                            });
+                            </script>
+                   
+                            
+                </div>
+           </div>
+
+
+
+        
+
+
+
+            <!-- panel -->
+			<div class="panel">
+                    <div class="panel_content">
+                            <button id="myBtn16">Rucho v. Common Cause - 2019</button>
+
+                            <!-- The Modal -->
+                            <div id="myModal16" class="modal">
+                
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span id="close16">&times;</span>
+                                <p>North Carolina’s 2016 Congressional map had been struck down by the district court, ruling that the plaintiffs had standing to challenge the map and that it was a product of partisan gerrymandering. Rucho, head of the senate redistricting committee appealed the decision to the Supreme Court. The Supreme Court ruled that partisan gerrymandering claims are not judiciable because they present a political question beyond the reach of the federal court. Federal courts are charged with resolving controversies and cases of a judicial nature, questions of a political nature are nonjusticiable.</p>
+                            </div>
+                            <div class="label">2019</div>
+                    </div>
+                    
+                    <script>
+                  //function closeModal() {
+                    //document.getElementById("myModal1").style.display="none";
+                  //}
+                            // Get the modal
+                            var modal16 = document.getElementById("myModal16");
+                            
+                            // Get the button that opens the modal
+                            var btn16 = document.getElementById("myBtn16");
+
+                            // Get the <span> element that closes the modal
+                            var span16 = document.getElementById("close16");
+                            
+                            // When the user clicks the button, open the modal 
+                            btn16.onclick = function() {
+                              modal16.style.display="block";
+                             
+                            }
+
+                            // When the user clicks on button 2, close the modal
+
+                            span16.onclick = function() {
+                              modal16.style.display = "none";
+                            }
+                            
+
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal16) {
+                                modal16.style.display = "none";
                               }
                             });
                             </script>
