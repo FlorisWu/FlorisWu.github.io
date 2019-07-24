@@ -5,15 +5,28 @@ svg5 = d3.select('#graph5')
         .attr({width: width5,
         height: height5});
 
-d3.json('3_3_edges.json', function(data) { 
+d3.json('3_3_edges_with_degree_and_distance.json', function(data) { 
 
     var nick_id = helpers.nick_id(data, function(d) { return d.from;}),
         uniques = nick_id.domain(),
         matrix = helpers.connection_matrix(data);
+    
+    var degree = data.map(function(d) {
+        return {degree:d.degree};
+    })
 
     var nodes = uniques.map(function (nick) {
-        return {nick:nick};
+        return {
+            nick: nick,
+            degree: degree[nick_id(nick)].degree
+        };
     })
+    console.log("nodes:",nodes);
+
+   
+    console.log("degree:",degree);
+
+
     var links = data.map(function(d) {
         return {
             source: nick_id(d.from),
@@ -32,7 +45,7 @@ d3.json('3_3_edges.json', function(data) {
 
     var weight = d3.scale.linear()
                     .domain(d3.extent(nodes.map(function(d) {return d.weight;})))
-                    .range([5,30])
+                    .range([5,20])
         distance = d3.scale.linear()
                     .domain(d3.extent(d3.merge(matrix)))
                     .range([110,500]),
@@ -51,13 +64,20 @@ d3.json('3_3_edges.json', function(data) {
                     .append("line")
                     .classed('link',true);
 
+
+    console.log("data:",data);
+
     var node = svg5.selectAll("circle")
                     .data(nodes)
                     .enter()
                     .append("circle")
                     .classed('node', true)
-                    .attr({r: function(d) {return weight(d.weight);},
-                    fill: function(d) {return helpers.color(d.index); },
+                    .attr({r: function(d) {
+                        return weight(d.weight)
+                    },
+                    fill: function(d) {
+                        return helpers.color(d.degree);},
+                    //console.log("d.degree:",d.degree);},
                     class: function(d) {return 'nick_'+nick_id(d.nick);}})
                     .on('mouseover', function(d) {highlight(d, uniques, given, matrix, nick_id); })
                     .on('mouseout', function(d) { dehighlight(d, weight);});
