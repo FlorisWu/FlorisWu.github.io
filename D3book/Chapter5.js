@@ -252,7 +252,7 @@ svg5 = d3.select('#graph5')
 
 d3.json('karma_matrix.json', function(data) { 
 
-    var nick_id = helpers.nick_id(data, function(d) { return d.from; }),
+    var nick_id = helpers.nick_id(data, function(d) { return d.from}),
         uniques = nick_id.domain(),
         matrix = helpers.connection_matrix(data);
 

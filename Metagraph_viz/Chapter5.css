@@ -1,0 +1,63 @@
+.axis path, .axis line{
+    fill:none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 0.75em;
+}
+
+rect {
+    fill: steelblue;
+    shape-rendering: crispEdges;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+path.highlighted {
+    fill-opacity: 0.5;
+    stroke: red;
+    stroke-width: 1.5;
+}
+
+#nicktool {
+    font-size: 1.3em;
+}
+
+#nicktool rect {
+    fill: white;
+}
+
+.chord path {
+    stroke: black;
+    stroke-width: 0.2;
+    opacity: 0.6;
+}
+
+line {
+    stroke: lightgrey;
+    stroke-width: 0.3;
+}
+
+.link {
+    fill:none;
+    stroke: lightgrey;
+}
+
+path {
+    stroke: white;
+    stroke-width: 2;
+}
+
+#nicktool {
+    font-size: 1.3em;
+}
+
+#nicktool rect {
+    fill:white;
+}
