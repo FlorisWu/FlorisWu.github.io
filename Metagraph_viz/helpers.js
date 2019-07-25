@@ -72,7 +72,7 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
     
 
 
-    tooltip1: function (text) {
+    /*tooltip1: function (text) {
         return function (selection) {
 
             selection.on('mouseover.tooltip', mouseover)
@@ -123,7 +123,7 @@ window.helpers={uniques: function (data, nick) { // turning nicknames into numbe
 
         
     }
-},
+},*/
 
 tooltip2: function (text) {
     return function (selection) {
@@ -140,8 +140,8 @@ tooltip2: function (text) {
             var path = d3.select(this);
             path.classed('highlighted',true);
 
-            var mouse = d3.mouse(svg5.node());
-            var tool = svg5.append('g')
+            var mouse = d3.mouse(svg1.node());
+            var tool = svg1.append('g')
                             .attr({'id': "nicktool",
                         transform: 'translate('+(mouse[0]+5)+', '+(mouse[1]+10)+')'});
         
@@ -164,7 +164,7 @@ tooltip2: function (text) {
     
 
         function mousemove () {
-            var mouse = d3.mouse(svg5.node());
+            var mouse = d3.mouse(svg1.node());
             d3.select('#nicktool')
                 .attr('transform','translate('+(mouse[0]+15)+', '+(mouse[1]+20)+')'); }
     
@@ -177,6 +177,59 @@ tooltip2: function (text) {
     
 }
 },
+
+tooltip3: function (text) {
+    return function (selection) {
+
+        selection.on('mouseover.tooltip', mouseover)
+        .on('mousemove.tooltip', mousemove)
+        .on('mouseout.tooltip', mouseout);
+
+    
+        
+
+        function mouseover(d) {
+    
+            var path = d3.select(this);
+            path.classed('highlighted',true);
+
+            var mouse = d3.mouse(svg2.node());
+            var tool = svg2.append('g')
+                            .attr({'id': "nicktool",
+                        transform: 'translate('+(mouse[0]+5)+', '+(mouse[1]+10)+')'});
+        
+            var textNode = tool.append('text')
+                                .text(text(d)).node();
+
+                
+        
+                tool.append('rect')
+                    .attr({height: textNode.getBBox().height,
+                    width: textNode.getBBox().width,
+                transform: 'translate(0,-16)'});
+
+        
+                tool.select('text')
+                        .remove();
+        
+                tool.append('text')
+                        .text(d.nick);  }
+    
+
+        function mousemove () {
+            var mouse = d3.mouse(svg2.node());
+            d3.select('#nicktool')
+                .attr('transform','translate('+(mouse[0]+15)+', '+(mouse[1]+20)+')'); }
+    
+        function mouseout () {
+            var path=d3.select(this);
+            path.classed('highlighted',false);
+            d3.select('#nicktool').remove(); }
+
+
+    
+        }
+    },
 
     connection_matrix: function (data) {
         var nick_id = helpers.nick_id(data, function (d) {
@@ -220,58 +273,7 @@ make_tree: function (data, filter1, filter2, nick1, nick2) {
     return tree;
 },
 
-tooltip3: function (text) {
-    return function (selection) {
 
-        selection.on('mouseover.tooltip', mouseover)
-        .on('mousemove.tooltip', mousemove)
-        .on('mouseout.tooltip', mouseout);
-
-    
-        
-
-        function mouseover(d) {
-    
-            var path = d3.select(this);
-            path.classed('highlighted',true);
-
-            var mouse = d3.mouse(svg8.node());
-            var tool = svg8.append('g')
-                            .attr({'id': "nicktool",
-                        transform: 'translate('+(mouse[0]+5)+', '+(mouse[1]+10)+')'});
-        
-            var textNode = tool.append('text')
-                                .text(text(d)).node();
-
-                
-        
-                tool.append('rect')
-                    .attr({height: textNode.getBBox().height,
-                    width: textNode.getBBox().width,
-                transform: 'translate(0,-16)'});
-
-        
-                tool.select('text')
-                        .remove();
-        
-                tool.append('text')
-                        .text(d.nick);  }
-    
-
-        function mousemove () {
-            var mouse = d3.mouse(svg8.node());
-            d3.select('#nicktool')
-                .attr('transform','translate('+(mouse[0]+15)+', '+(mouse[1]+20)+')'); }
-    
-        function mouseout () {
-            var path=d3.select(this);
-            path.classed('highlighted',false);
-            d3.select('#nicktool').remove(); }
-
-
-    
-        }
-    },
 
 tooltip4: function (text) {
     return function (selection) {
@@ -327,5 +329,4 @@ tooltip4: function (text) {
     },
   
 };
-    
 
