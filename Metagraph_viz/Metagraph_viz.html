@@ -5,17 +5,59 @@
 
 <center><h1>Metagraph visualizations</h1></center>
 
-<center><p id="paragraph1">This webpage displays interactive metagraphs of districting plans. Each node is a districting plan, and you can click a node to highlight all of its neighbors.</p></center>
+<center><h3>Si Wu, JN Matthews</h3></center>
+<center><p id="paragraph1">At the Voting Rights Data Institute, we have lots of different ways to draw voting districts. 
+For the visualization on this webpage, the rules are there must be three districts and each district must be made up of three contiguous units (basically, each district looks like a tetris piece),
+and these districts are laid out on a three-by-three grid. There turns out to be 10 ways of doing this.
+</p></center>
+
+<center><p id="paragraph1">We can impose a graph or network structure to organize the collection of all of those 
+    10 districting options. We'll let each valid plan be represented by a node in this network, and we'll connect 
+    two nodes with an edge if the plans they represent are related by a simple swap move, exchanging the district assignments 
+    of two cells from adjacent districts.
+</p></center>
+
+<center><p id="paragraph1">We call this structure the metagraph of districting plans. For a full explanation of the metagraph of districting plans, please visit https://mggg.org/metagraph/ .
+</p></center>
+
+<center><p id="paragraph1">The visualization below displays interactive metagraphs of districting plans. Each node is a districting plan, and you can click a node to highlight all of its neighbors.</p></center>
 
 
-
-<center><h3> 3 3 3 metagraph</h3></center>
 <center><div id="graph1">
 </div></center>
 
-<center><h3> 4 4 4 metagraph</h3></center>
+<!--<center><h3> 4 4 4 metagraph</h3></center>
 <center><div id="graph2">
-</div></center>
+</div></center>-->
+
+<center><p id="paragraph1">When you mouse over a node in the metagraph, you can see the corresponding districting plan. 
+    The data format is a left-to-right, top-to-bottom linearization of the partition.
+    For a districting plan with numbers listed as 1,1,1,2,2,3,2,3,3, for example, the partition is 
+</p></center>
+
+
+<center><p class="small">
+        1 1 1<br>
+        2 2 3<br>
+        2 3 3<br>
+</p></center>
+
+<center><p id="paragraph1">where the same number represents the three contiguous units in the same districts. 
+    The nodes are colored by the number of degree (or number of neighbors). 
+    The number of edges in this metagraph is 16;
+    the radius (the minimum value of all maximum distances from any node to all other nodes) is 3;
+    the diameter (the maximum value of all maximum distances from any node to all other nodes) is 3;
+    the number of centers (the set of nodes with maximum distance to all other nodes equal to radius) is 10.
+    </p></center>
+
+
+
+<style>
+        p.small {
+          line-height: 0.9;
+        }
+        
+</style>
 
 
 

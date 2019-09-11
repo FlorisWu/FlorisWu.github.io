@@ -125,23 +125,26 @@ svg2 = d3.select('#graph2')
 
 d3.json('4_4_4_edges_with_degree_and_distance.json', function(data) { 
 
-    var nick_id = helpers.nick_id(data, function(d) { return d.from;}),
+    var nick_id = helpers.nick_id(data, function(d) { return d.from; }),
         uniques = nick_id.domain(),
         matrix = helpers.connection_matrix(data);
     
         console.log("data:", data);
 
+        // I've checked and we know that the information contained in "data" is correct. That means, the partitions has the correct number of degree matched to them
+
     var degree = data.map(function(d) {
         console.log("d:", d);
-        console.log("d.degree:", d.degree);
+        console.log("d.degree:", d.degree); // d and d.degree are outputting the correct number of degrees 
         return {degree:d.degree};
     })
 
     var nodes = uniques.map(function (nick) { 
-        console.log("nick:",nick);
+        console.log("nick:",nick); 
         console.log("nick_id(nick):",nick_id(nick));
         console.log("degree[nick_id(nick)]:",degree[nick_id(nick)]);
         console.log("degree[nick_id(nick)].degree:",degree[nick_id(nick)].degree);
+        // things start to go wrong here! the degree does not match with the partition!
          // next step: checking if nick_id is doing the right thing/mapping
         
         return {
