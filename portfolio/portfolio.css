@@ -162,6 +162,16 @@ header {
     background-color: white;
   }
 
+  .box-06 .inner {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  background-size: 500px;
+    width: 45%;
+    float: left;
+    align-content: center;
+  background-color: white;
+}
+
 
   
   .row {
