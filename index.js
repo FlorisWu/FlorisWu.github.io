@@ -1,5 +1,9 @@
+
+
 function openCity(evt, cityName) {
+
     var i, tabcontent, tablinks;
+    
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
@@ -12,5 +16,3 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
   }
   
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();

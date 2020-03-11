@@ -4,36 +4,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
 </head>
 <body>
 
 <script src="index.js"></script>
 <link rel="stylesheet" href="index.css" />
 
-<p>In this example, we use JavaScript to "click" on the London button, to open the tab on page load.</p>
+<h2><center>Si Wu</center></h2>
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Home</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Publications</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Curriculum Vitae</button>
 </div>
 
 <div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
+    <h3>Home</h3>
+  <p style="width:65%;">I am a second-year master's student studying data journalism at Northeastern University. I previously completed a bachelor's degree in physics at Imperial College London, U.K. </p>
+
+<p style="width:65%;">Currently, I work as an intern at the <a href="https://hdsr.mitpress.mit.edu/">Harvard Data Science Review</a>, 
+  where I design and develop data visualization
+ to effectively communicate data science concepts.</p>
+
+<p style="width:65%;">During the summer of 2019, I worked for the <a href="http://gerrydata.org">Voting Rights Data Institute</a>, 
+  where I conducted research in the mathematics of gerrymandering by applying data science to social and political problems. 
+  While there, I coauthored <a href="https://arxiv.org/abs/1910.09618"><b>"Geometry of Graph Partitions Via Optimal Transport"</b></a>, a paper supervised by <a href="https://people.csail.mit.edu/jsolomon/">Justin Solomon</a> at MIT.</p>
+  
+  
+  <p style="width:65%;">Prior to that, I was a data researcher for Northeastern's School of Journalism. A highlight of my experience there is
+  a Twitter sentiment analysis project -  
+  <a href="https://www.rollcall.com/news/campaigns/lead-midterms-twitter-republicans-went-high-democrats-went-low">"Democrats 'went low' on Twitter leading up to 2018"</a> - that got published on news publication Roll Call.</p>
+
+<p style="width:65%;">I also pursued a machine learning course at Northeastern, which enabled me to develop several algorithms from scratch,
+including gradient descent, logistic regression, QDA, LDA, Naive Bayes, perceptron, and neural network.
+</p>
+    
+<p style="width:65%;"> At Imperial College London, I conducted various computing, laboratory and research projects collaboratively and solved challenging physics, math and statistical questions.
+    
+    My experience studying and working in the U.K., China and the U.S. has also provided me with a global perspective, a valuable skill in today’s highly-interconnected world. </p>
+    
+    <p style="width:65%;">Outside my work, I like to cook, box, cycle, and travel.
+    </p>
 </div>
 
 <div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
+  <h3>Publications</h3>
+  <p style="width:65%;"><a><b><a href="https://arxiv.org/abs/1910.09618">Geometry of Graph Partitions via Optimal Transport.</a></b> arXiv. (Authors (in alphabetical order by last name): Tara Abrishami, Nestor Guillen, Parker Rule, Zachary Schutzman, 
+    Justin Solomon, Thomas Weighill, and <b>Si Wu</b>)  </a></p>
+
+    <p><a><b><a href="https://www.rollcall.com/news/campaigns/lead-midterms-twitter-republicans-went-high-democrats-went-low">Democrats "went low" on Twitter leading up to 2018.</a></b> Roll Call. (Authors: Floris Wu, Aleszu Bajak.)</a></p>
 </div>
 
 <div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
+  <h3>Curriculum Vitae</h3>
+  <p><a href="https://floriswu.github.io/portfolio/SiWuCV.pdf">Curriculum Vitae</a></p>
 </div>
 
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 
    
 </body>
