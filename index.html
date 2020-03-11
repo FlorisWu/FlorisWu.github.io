@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <head>
-        <meta charset="utf-8"/>
 
-        <center>
-            <title>Home Page</title>
-            <h1>Visualization Technologies 1 – Si Wu (Floris)</h1>
-            <p><a href="Previous_work/homework/image.html">click here for Homework 1</a></p>
-            <p><a href="Previous_work/HW2.html">click here for Homework 2</a></p>
-            <p><a href="Previous_work/jan24.html">JavaScript Test Page</a></p>
-            <p><a href="Previous_work/Homework_jan31.html">click here for Homework 3</a></p>
-            <p><a href="Previous_work/jan31_D3classwork.html">click here for D3playground</a></p>
-            <p><a href="Previous_work/Homework4_D3work.html">click here for Homework 4</a></p>
-            <p><a href="practice/test_barChart.html">click here for bar chart practice</a></p>
-            <p><a href="Previous_work/feb28_worldMap.html">click here for Flo's cool world map</a></p>
-            <p><a href="Final_project/finalProject.html">click here for final project</a></p>
-            <p><a href="D3book/Practice1.html">click here for practice with D3 book - part 1</a></p>
-            <p><a href="D3book/Chapter5.html">click here for practice with D3 book - part 2</a></p>
-            <p><a href="myTimeline/index.html">click here for interactive timeline practice</a></p>
-            <p><a href="myTimeline/index2.html">click here for interactive timeline</a></p>
-            <p><a href="Metagraph_viz/Metagraph_viz.html">click here for metagraph visualizations</a></p>
-            <p><a href="iowa_viz/iowa_viz.html">click here for iowa visualizations</a></p>
 
-            <h1>Visualization Technologies 2 – Si Wu (Floris)</h1>
+</head>
+<body>
 
-            <p><a href="Vis_tech2/HW1/HW1.html">click here for Vis Tech 2, HW1</a></p>
-        </center>
+<script src="index.js"></script>
+<link rel="stylesheet" href="index.css" />
 
-    </head>
+<p>In this example, we use JavaScript to "click" on the London button, to open the tab on page load.</p>
 
-</html>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+
+   
+</body>
+</html> 
