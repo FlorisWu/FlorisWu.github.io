@@ -36,3 +36,17 @@ body {font-family: Arial;}
   border: 1px solid #ccc;
   border-top: none;
 }
+
+.column {
+  float: left;
+  padding: 30px;
+}
+.left {
+  width: 50%;
+  text-align: left;
+}
+
+.right {
+  width: 40%;
+  text-align: left;
+}
