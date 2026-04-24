@@ -519,6 +519,12 @@ img {
   font-weight: 700;
 }
 
+.post-date {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
 .post-body p {
   margin: 0 0 1.2rem;
   color: var(--text);
