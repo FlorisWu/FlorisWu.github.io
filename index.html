@@ -1,119 +1,277 @@
 <!DOCTYPE html>
-<title>Si Wu Portfolio</title>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Si Wu | Data Science Portfolio</title>
+  <meta
+    name="description"
+    content="Si Wu is a Boston University PhD candidate working across quantitative social science, data visualization, journalism, and computational research."
+  >
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-<script src="index.js"></script>
-<link rel="stylesheet" href="index.css" />
-
-<h2><center>Si Wu</center></h2>
-
-<div class="tab" style="border:none">
-  <button class="tablinks" onclick="openTab(event, 'PageA')" id="defaultOpen">Home</button>
-  <button class="tablinks" onclick="openTab(event, 'PageB')">Academic Publications</button>
-  <button class="tablinks" onclick="openTab(event, 'PageC')">Other Publications</button>
-  <button class="tablinks" onclick="openTab(event, 'PageD')">Media Coverage</button>
-  <button class="tablinks" onclick="openTab(event, 'PageF')">中文介绍</button>
-  <button class="tablinks" onclick="openTab(event, 'PageE')">Curriculum Vitae</button>
-</div>
-
-<div id="PageA" class="tabcontent" style="border:none">
-  
-  <div class="column left">
-
-    <p style="width:80%;">Welcome to my website!</p>
-
-    <p style="width:80%;">I am Si Wu, a 6th-year PhD Candidate in Political Science at Boston University. I am on the job market for 2025-2026. My research interests include comparative politics, political economy, development, gender, demography, China, and political methodologies. </p>
-      <p style="width:80%;">My dissertation, "From Control to Choice: Women, Work, and Power in China's New Birth Planning Regime", will explore the politics and economic consequences of the end of China's one-child policy. To do this, it sets forth three questions.
-        The first chapter explores the impact of the end of China's one-child policy on a key outcome for women's economic status: their labor market participation.
-        The second chapter investigates how the All-China Women's Federation - China's official Women's Policy Agency - responds to the end of the one-child policy through its official discourse.
-        Third, I examine the impact of political geography on childbirth preferences. I do this through the case of Guangzhou - a city in Southern China known for its rapid urbanization and the formation of "urban villages". </p>
-        <p style="width:80%;">At Boston University, my research has been supported by the Hariri Institute for Computing, the Global Development Policy Center, Graduate School of Arts & Sciences, the Center for Innovation in Social Science (CISS), and the Frederick S. Pardee Center for the Study of the Longer-Range Future. </p>
-
-      <p style="width:80%;">I received my Bachelor's Degree in Physics from Imperial College London, U.K., and a Master's Degree in Journalism from Northeastern University.</p>
-  
- 
-      
-      
-      <p style="width:60%;">Outside my work, I like to cook, travel, run, and practice yoga.
-      </p>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#home" data-page-link="home" aria-label="Si Wu home">
+        <span class="brand-mark">SW</span>
+        <span>Si Wu</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#home" data-page-link="home">Home</a>
+        <a href="#research-writing" data-page-link="research-writing">Research Writing</a>
+        <a href="#other-publications" data-page-link="other-publications">Other Publications</a>
+        <a href="#media-coverage" data-page-link="media-coverage">Media Coverage</a>
+        <a href="#chinese" data-page-link="chinese">中文</a>
+        <a class="nav-cta" href="portfolio/SiWuCV.pdf">CV</a>
+      </nav>
     </div>
-  
-    <div class="column right">
-      <img src="SiWu.jpg" alt="Profile" width="90%">
-  </div>
-      
-  </div>
+  </header>
 
-<div id="PageB" class="tabcontent" style="border:none">
+  <main id="top">
+    <section class="page-panel is-active" id="home" data-page="home">
+      <div class="hero">
+      <div class="hero-copy">
+        <h1>
+          PhD researcher focused on the intersection of
+          <span>AI, ethics, and public policy</span>, examining how technological systems
+          shape inequality and decision-making.
+        </h1>
+        <p class="hero-text">
+          I am Si Wu, a 6th-year PhD Candidate in Political Science at Boston University. My research interests
+          include comparative politics, political economy, development, gender, demography, China, and political
+          methodologies.
+        </p>
+        <p class="hero-text">
+          My dissertation, <em>From Control to Choice: Women, Work, and Power in China's New Birth Planning Regime</em>,
+          explores the politics and economic consequences of the end of China's one-child policy. To do this,
+          it sets forth three questions. The first chapter explores the impact of the end of China's one-child policy
+          on a key outcome for women's economic status: their labor market participation. The second chapter investigates
+          how the All-China Women's Federation - China's official Women's Policy Agency - responds to the end of the
+          one-child policy through its official discourse. Third, I examine the impact of political geography on
+          childbirth preferences. I do this through the case of Guangzhou - a city in Southern China known for its
+          rapid urbanization and the formation of "urban villages".
+        </p>
+        <p class="hero-text">
+          At Boston University, my research has been supported by the Hariri Institute for Computing, the Global
+          Development Policy Center, Graduate School of Arts &amp; Sciences, the Center for Innovation in Social Science
+          (CISS), and the Frederick S. Pardee Center for the Study of the Longer-Range Future.
+        </p>
+      </div>
 
-  <p>Blog posts</p>
+      <aside class="profile-panel" aria-label="Profile summary">
+        <img class="profile-photo" src="SiWu.jpg" alt="Portrait of Si Wu">
+        <div class="profile-copy">
+          <p class="profile-name">Si Wu</p>
+          <p>PhD Candidate, Political Science, Boston University</p>
+        </div>
+        <dl class="profile-facts">
+          <div>
+            <dt>Background</dt>
+            <dd>BSc in Physics, Imperial College London</dd>
+            <dd>MA in Journalism, Northeastern University</dd>
+          </div>
+          <div>
+            <dt>Research</dt>
+            <dd>Political economy, demography, causal inference, ethics, China, political methodologies</dd>
+          </div>
+          <div>
+            <dt>Looking for</dt>
+            <dd>Roles where I can contribute to building socially responsible AI systems that translate ethical principles into measurable impact</dd>
+          </div>
+        </dl>
+      </aside>
+      </div>
 
-  <p style="width:65%;"><a><b><a href="https://www.bu.edu/gdp/2023/10/04/summer-in-the-field-women-work-and-politics-in-chinas-new-era-of-family-planning/">Summer in the Field: Women, Work and Politics in China's New Era of Family Planning.</a></b> Published with BU Global Development Policy (GDP) Center.</a></p>
+      <div class="home-writing">
+        <div class="section-heading">
+          <p class="section-kicker">Latest Writing</p>
+        </div>
+        <div class="home-writing-list">
+          <a class="home-writing-item" href="#how-a-social-science-phd-reshaped-my-thinking-towards-ai" data-page-link="how-a-social-science-phd-reshaped-my-thinking-towards-ai">
+            <div>
+              <h2>How a Social Science PhD Reshaped My Thinking Towards AI</h2>
+            </div>
+            <span>Read the post</span>
+          </a>
+        </div>
+      </div>
 
-<p>Academic papers</p>
-  <p style="width:65%;"><a><b><a href="https://epubs.siam.org/doi/abs/10.1137/19M1295258">Geometry of Graph Partitions via Optimal Transport.</a></b> SIAM Journal on Scientific Computing. (With Tara Abrishami, Nestor Guillen, Parker Rule, Zachary Schutzman, 
-    Justin Solomon, and Thomas Weighill.) ArXiv: <a href="https://arxiv.org/pdf/1910.09618.pdf">1910.09618</a>.</a></p>
+    </section>
 
-    
-</div>
+    <section class="page-panel" id="research-writing" data-page="research-writing">
+      <div class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Research Writing</p>
+          <h2>Blog posts</h2>
+        </div>
 
-<div id="PageC" class="tabcontent" style="border:none">
+        <div class="publication-list">
+          <p>
+            <a href="#how-a-social-science-phd-reshaped-my-thinking-towards-ai" data-page-link="how-a-social-science-phd-reshaped-my-thinking-towards-ai"><strong>How a Social Science PhD Reshaped My Thinking Towards AI</strong></a>
+          </p>
+          <p>
+            <a href="https://www.bu.edu/gdp/2023/10/04/summer-in-the-field-women-work-and-politics-in-chinas-new-era-of-family-planning/"><strong>Summer in the Field: Women, Work and Politics in China's New Era of Family Planning.</strong></a>
+            Published with BU Global Development Policy (GDP) Center.
+          </p>
+        </div>
 
-  <p><a><b><a href="https://rollcall.com/2019/02/12/democrats-went-low-on-twitter-leading-up-to-2018/">Democrats "went low" on Twitter leading up to 2018.</a></b> Roll Call. (With <a href="https://twitter.com/aleszubajak">Aleszu Bajak</a>.)</a></p>
+        <div class="section-heading publication-subheading">
+          <h2>Academic papers</h2>
+        </div>
 
-  <p><a><b><a href="https://www.wgbh.org/news/commentary/2018/05/10/renewable-energy-is-the-future-so-why-are-we-still-stuck-in-the-past">Renewable energy is the future. So why are we still stuck in the past?</a></b> WGBH.</a></p>
-  <p><a> <b><a href="https://www.storybench.org/what-i-learned-applying-data-science-to-u-s-redistricting/">What I learned applying data science to U.S. redistricting.</a></b> Storybench.</a></p>
-  <p><a> <b><a href="https://www.storybench.org/how-to-build-a-heatmap-in-python/">How to build a heatmap in Python.</a></b> Storybench.</a></p>
- <p><a> <b><a href="http://www.storybench.org/the-future-of-machine-learning-in-journalism/">The future of machine learning in journalism.</a></b> Storybench.</a></p>
- <p> <a> <b> <a href="http://www.storybench.org/carlos-scheidegger-data-science-needs-done-humanely/">Carlos Scheidegger on why data science needs to be done humanely.</a></b> Storybench.</a></p>
-  <p>  <a> <b><a href="http://www.storybench.org/takeaways-watchdog-reporter-2018-boston-watchdog-workshop/">Takeaways on being a watchdog reporter from the 2018 Boston Watchdog Workshop.</a></b> Storybench.</a></p>
-  <p> <a> <b><a href="http://www.storybench.org/florida-today-created-augmented-reality-rocket-launch-app/">How Florida Today created an augmented reality rocket launch app.</a></b> Storybench.</a></p>
+        <div class="publication-list">
+          <p>
+            <a href="https://epubs.siam.org/doi/abs/10.1137/19M1295258"><strong>Geometry of Graph Partitions via Optimal Transport.</strong></a>
+            SIAM Journal on Scientific Computing. (With Tara Abrishami, Nestor Guillen, Parker Rule, Zachary Schutzman,
+            Justin Solomon, and Thomas Weighill.) ArXiv:
+            <a href="https://arxiv.org/pdf/1910.09618.pdf">1910.09618</a>.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <section class="page-panel" id="other-publications" data-page="other-publications">
+      <div class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Other Publications</p>
+        </div>
 
-</div>
+        <div class="publication-list">
+          <p>
+            <a href="https://rollcall.com/2019/02/12/democrats-went-low-on-twitter-leading-up-to-2018/"><strong>Democrats "went low" on Twitter leading up to 2018.</strong></a>
+            Roll Call. (With <a href="https://twitter.com/aleszubajak">Aleszu Bajak</a>.)
+          </p>
+          <p>
+            <a href="https://www.wgbh.org/news/commentary/2018/05/10/renewable-energy-is-the-future-so-why-are-we-still-stuck-in-the-past"><strong>Renewable energy is the future. So why are we still stuck in the past?</strong></a>
+            WGBH.
+          </p>
+          <p>
+            <a href="https://www.storybench.org/what-i-learned-applying-data-science-to-u-s-redistricting/"><strong>What I learned applying data science to U.S. redistricting.</strong></a>
+            Storybench.
+          </p>
+          <p>
+            <a href="https://www.storybench.org/how-to-build-a-heatmap-in-python/"><strong>How to build a heatmap in Python.</strong></a>
+            Storybench.
+          </p>
+          <p>
+            <a href="http://www.storybench.org/the-future-of-machine-learning-in-journalism/"><strong>The future of machine learning in journalism.</strong></a>
+            Storybench.
+          </p>
+          <p>
+            <a href="http://www.storybench.org/carlos-scheidegger-data-science-needs-done-humanely/"><strong>Carlos Scheidegger on why data science needs to be done humanely.</strong></a>
+            Storybench.
+          </p>
+          <p>
+            <a href="http://www.storybench.org/takeaways-watchdog-reporter-2018-boston-watchdog-workshop/"><strong>Takeaways on being a watchdog reporter from the 2018 Boston Watchdog Workshop.</strong></a>
+            Storybench.
+          </p>
+          <p>
+            <a href="http://www.storybench.org/florida-today-created-augmented-reality-rocket-launch-app/"><strong>How Florida Today created an augmented reality rocket launch app.</strong></a>
+            Storybench.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <section class="page-panel" id="media-coverage" data-page="media-coverage">
+      <div class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Media Coverage</p>
+        </div>
 
+        <div class="publication-list">
+          <p>
+            <a href="https://www.bu.edu/cas/ph-d-students-return-to-their-home-countries-to-investigate-economic-and-social-issues/"><strong>Doctoral students return home for summer research</strong></a>
+            - Graduate School of Arts and Sciences, Boston University
+          </p>
+          <p>
+            <a href="https://www.bu.edu/hic/2021/04/16/graduate-student-fellow-hopes-to-apply-data-journalism-skills-to-study-inequalities/"><strong>Graduate Student Fellow Hopes to Apply Data Journalism Skills to Study Inequalities</strong></a>
+            - Hariri Institute for Computing, Boston University
+          </p>
+          <p>
+            <a href="https://news.northeastern.edu/2019/03/05/democrats-who-won-2018-midterms-were-more-negative-than-republicans-on-twitter-research-finds/"><strong>Democrats who won 2018 midterms were more negative than Republicans on Twitter, research finds</strong></a>
+            - News@Northeastern, Northeastern University
+          </p>
+          <p>
+            <a href="https://camd.northeastern.edu/news/si-wu-spends-summer-using-data-to-help-others-understand-political-redistricting/"><strong>Si Wu, Journalism graduate student, uses data to help others understand political redistricting</strong></a>
+            - College of Arts, Media and Design, Northeastern University
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <section class="page-panel" id="how-a-social-science-phd-reshaped-my-thinking-towards-ai" data-page="how-a-social-science-phd-reshaped-my-thinking-towards-ai">
+      <div class="section">
+        <article class="post-article">
+          <header class="post-header">
+            <p class="section-kicker">Blog Post</p>
+            <h2>How a Social Science PhD Reshaped My Thinking Towards AI</h2>
+            <p class="post-meta">Si Wu</p>
+          </header>
 
-<div id="PageD" class="tabcontent" style="border:none">
+          <div class="post-body">
+            <p>Over my PhD degree in political science, I have found myself reading widely in anthropology. That training fundamentally changed how I interpret the world. My husband once joked, &ldquo;Is everything I say a symbol to you now?&rdquo; In some ways, yes. Anthropology has taught me to see everyday interactions as part of larger systems of meaning. My social science training taught me to look past individual behavior and ask what technical systems make certain outcomes more likely.</p>
+            <p>This way of thinking has become unexpectedly valuable in the age of AI.</p>
+            <p>When I was finishing my master&rsquo;s degree at Northeastern University, I took a machine learning class out of curiosity. I didn&rsquo;t anticipate that, by the time I was a few years into my PhD program at Boston University, AI (particularly LLMs) would evolve so rapidly and become so deeply embedded across industries. As I was training to be a social scientist, the technological landscape was concurrently transforming at an extraordinary pace.</p>
+            <p>That coincidence has shaped my perspective. I came to see that the role of social scientists today is not separate from technological development but deeply intertwined with it.</p>
+            <p>AI in its current form has rapidly and fundamentally transformed many sectors, from algorithmic trading in finance to chatbots in customer service to pedagogy. While the use of AI in these sectors is often described as an agnostic data-driven process, it is not inherently ethical. For example, during my PhD, I worked on a project that used AI tools to classify a piece of text as propagandistic rather than objective. But if the historical examples used to guide that classification reflect narrow assumptions about political language, the model can reproduce those assumptions while presenting them as neutral analysis. In practice, this means that contested judgements about ideology and propaganda can be embedded in the system itself. The ethical problem is not just misclassification. It is that AI can make subjective political interpretations appear objective.</p>
+            <p>My PhD dissertation examines the politics and economic consequences of the end of China&rsquo;s one-child policy, particularly its effects on men&rsquo;s and women&rsquo;s labor market outcomes. I also consider how the ongoing technological shifts may impact these dynamics. One lesson from that work is that large-scale systems are often designed around simplified assumptions about people&rsquo;s behavior. In China, the one-child policy and later its two- and three-child policies were not designed as gender policies, yet they reshaped women&rsquo;s economic status in lasting ways.</p>
+            <p>My research has made me skeptical of any claim that a large-scale system is neutral because it is optimized for efficiency. In both public policy and AI, designers choose what to measure and what to optimize for. These choices shape real lives. In China, market reform and family planning policy did not affect everyone equally; they had uneven consequences for people&rsquo;s labor market participation, economic security, and household decision-making. AI systems raise similar questions. What is being optimized? Whose behavior is treated as the norm? Who bears the cost when a system works well for some groups but poorly for others?</p>
+            <p>Ultimately, while the rapid advancement of AI is exciting, it also demands careful attention. Without it, we risk unintended consequences that extend far beyond the technical domain.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <p><b><a href="https://www.bu.edu/cas/ph-d-students-return-to-their-home-countries-to-investigate-economic-and-social-issues/">Doctoral students return home for summer research</a></b> - Graduate School of Arts and Sciences, Boston University </p>
+    <section class="page-panel" id="chinese" data-page="chinese">
+      <div class="section section-language">
+      <div class="section-heading">
+        <p class="section-kicker">中文介绍</p>
+        <h2>欢迎来到我的网站。</h2>
+      </div>
+      <div class="language-copy">
+        <p>我叫吴斯，现为波士顿大学政治学系六年级博士候选人。我本科毕业于伦敦帝国理工学院物理系，硕士毕业于东北大学新闻系。跨领域的学习让我能够结合定量分析、因果推断和社会科学研究的方法来理解复杂问题。</p>
+        <p>我的博士论文围绕独生子女政策结束后中国政治与经济层面的变化展开，结合了比较政治学、政治经济学、中国研究与性别研究的相关文献，并运用定量与定性相结合的方法进行分析。</p>
+      </div>
+      </div>
+    </section>
+  </main>
 
-  <p><b><a href="https://www.bu.edu/hic/2021/04/16/graduate-student-fellow-hopes-to-apply-data-journalism-skills-to-study-inequalities/">Graduate Student Fellow Hopes to Apply Data Journalism Skills to Study Inequalities</a></b> - Hariri Institute for Computing, Boston University </p>
+  <script>
+    const pagePanels = document.querySelectorAll("[data-page]");
+    const pageLinks = document.querySelectorAll("[data-page-link]");
 
-  <p style="width:65%;"><b><a href="https://news.northeastern.edu/2019/03/05/democrats-who-won-2018-midterms-were-more-negative-than-republicans-on-twitter-research-finds/">Democrats who won 2018 midterms 
-    were more negative than Republicans on Twitter, research finds
+    function showPage(pageName) {
+      pagePanels.forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.page === pageName);
+      });
 
-  </a></b> - News@Northeastern, Northeastern University</p>
+      pageLinks.forEach((link) => {
+        const isActive = link.dataset.pageLink === pageName;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
 
-    <p><b><a href="https://camd.northeastern.edu/news/si-wu-spends-summer-using-data-to-help-others-understand-political-redistricting/">Si Wu, Journalism graduate student, uses data to help others understand political redistricting</a></b> - College of Arts, Media and Design, Northeastern University </p>
-</div>
+    function currentPageFromHash() {
+      const pageName = window.location.hash.replace("#", "");
+      const pageExists = document.querySelector(`[data-page="${pageName}"]`);
+      return pageExists ? pageName : "home";
+    }
 
+    pageLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        showPage(link.dataset.pageLink);
+      });
+    });
 
-
-<div id="PageE" class="tabcontent" style="border:none">
-
-  <p><a href="https://floriswu.github.io/portfolio/SiWuCV.pdf">Curriculum Vitae</a></p>
-</div>
-
-<div id="PageF" class="tabcontent" style="border:none">
-
-  <p><a>欢迎来到我的网站。我叫吴斯，现为波士顿大学政治学系六年级博士候选人。我本科毕业于伦敦帝国理工学院物理系，硕士毕业于东北大学新闻系。跨领域的学习让我的思想更加多元化，我的物理学背景也让我对大数据产生了兴趣。</a></p>
-      <p><a>我的博士论文将探讨独生子女政策的结束对中国政治和经济的影响。在历史上，独生子女政策一直是西方社会颇具争议的话题；西方社会和中国在这个问题上有着不同的观点。如今，我希望通过对独生子女政策结束的解读，来促进东西方社会之间的相互理解。</a></p>
-      <p><a>我将结合比较政治学、政治经济学、中国和性别研究等领域的文献，采用定量和定性的方法来探究该课题。</a></p>
-</div>
-
-<script>
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
-
-   
+    window.addEventListener("hashchange", () => showPage(currentPageFromHash()));
+    showPage(currentPageFromHash());
+  </script>
 </body>
-</html> 
+</html>
