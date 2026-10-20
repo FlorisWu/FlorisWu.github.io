@@ -63,7 +63,8 @@ const providers=Object.keys(names);const state={choice:0,context:0,model:0};
 const pinyin={'仁':'ren','礼':'li','义':'yi','德':'de','道':'dao'};
 function withPinyin(text){return String(text??'').replace(/(?<!\p{Script=Han})([仁礼义德道])(?!\p{Script=Han})/gu,(match,character,offset,source)=>{const spelling=pinyin[character];const following=source.slice(offset+1);if(new RegExp('^\\s*(?:\\(\\s*)?'+spelling+'\\b','i').test(following))return character;return character+' '+spelling})}
 const el=id=>document.getElementById(id);
-function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function spacedDashes(text){return String(text).replace(/[ \t]*—[ \t]*/g,' — ')}
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=spacedDashes(text);if(cls)n.className=cls;return n}
 function tabs(id,key,callback){el(id).replaceChildren(...terms.map((t,i)=>{const b=node('button',t.zh+' '+pinyin[t.zh]);b.type='button';b.setAttribute('aria-pressed',String(state[key]===i));b.onclick=()=>{state[key]=i;tabs(id,key,callback);callback()};return b}))}
 function response(term,provider,condition,run){return data.find(r=>r._expected_term===term.zh&&r._provider===provider&&r._prompt_condition===condition&&Number(r._run_index)===Number(run))}
 function passage(term){return data.find(r=>r._expected_term===term.zh)._passage_zh}
