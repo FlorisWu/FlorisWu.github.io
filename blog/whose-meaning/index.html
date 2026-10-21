@@ -61,7 +61,7 @@ const terms=[
 const names={openai:'OpenAI',qwen:'Qwen',moonshot:'Moonshot / Kimi',anthropic:'Anthropic / Claude'};
 const providers=Object.keys(names);const state={choice:0,context:0,model:0};
 const pinyin={'仁':'rén','礼':'lǐ','义':'yì','德':'dé','道':'dào'};
-function withPinyin(text){return String(text??'').replace(/(?<!\p{Script=Han})([仁礼义德道])(?!\p{Script=Han})(?:[ \t]+(?:r[eé]n|l[iǐ]|y[iì]|d[eé]|d[aà]o)(?!\p{L}))?/gu,(match,character)=>character+' '+pinyin[character])}
+function withPinyin(text){return String(text==null?'':text).replace(/([仁礼义德道])(?:[ \t]+(?:r[eé]n|l[iǐ]|y[iì]|d[eé]|d[aà]o)(?![A-Za-zÀ-ž]))?/g,(match,character,offset,source)=>{const han=/[\u3400-\u9fff\uf900-\ufaff]/;if(han.test(source.charAt(offset-1))||han.test(source.charAt(offset+1)))return match;return character+' '+pinyin[character]})}
 const el=id=>document.getElementById(id);
 function spacedDashes(text){return String(text).replace(/[ \t]*—[ \t]*/g,' — ')}
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=spacedDashes(text);if(cls)n.className=cls;return n}
